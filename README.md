@@ -1,41 +1,22 @@
-# Personal Portfolio Website
+# Lewis Grice
 
-I wanted to build a modern portfolio to showcase my projects, skills, and contact details.
+My portfolio: what I build at GoKarya, my own projects, and my university work.
 
-[View Live Site](https://lg9757.github.io/lewis-grice-portfolio)
+**Live:** https://lewis793.github.io/my-portfolio/
 
-## Technologies Used
+Built with React and Vite. Each project is shown as a small drawing in that project's own colours. See [DESIGN.md](DESIGN.md) for the design system.
 
-- **React** - Frontend framework
-- **JavaScript** - Programming language
-- **CSS** - Styling and animations
-- **HTML5** - Semantic markup
-- **Vite** - Build tool and development server
-- **EmailJS** - Contact form email service
-- **Git/GitHub** - Version control and deployment
+## Run it
 
-## Project Structure
+```sh
+npm install
+npm run dev
+```
 
-lewis-grice-portfolio/  
-├── src/  
-│ ├── assets/ # Images and logos  
-│ ├── App.jsx # Main application component  
-│ ├── App.css # Application styles  
-│ ├── main.jsx # React entry point   
-├── public/ # Static assets  
-├── package.json # Dependencies and scripts  
-└── vite.config.js # Vite configuration
+## Deploy
 
-## Running
+```sh
+npm run deploy
+```
 
-### Prerequisites
-
-- **Node.js** (v14 or higher)
-- **npm** - package manager
-
-### Installation
-
-1. Clone the repository
-2. Navigate to the project directory
-3. Install dependencies
-4. Run the development server
+This builds the site and publishes `dist/` to the `gh-pages` branch, which GitHub Pages serves.
