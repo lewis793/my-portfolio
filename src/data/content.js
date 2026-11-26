@@ -45,11 +45,11 @@ export const work = [
 export const projects = [
   {
     id: 'blocksmash',
-    short: 'A block puzzle with no ads, no revives and an honest random dealer. It installs to your phone and plays offline.',
+    short: 'A block puzzle with an honest dealer: pieces are truly random and never rigged against you. It installs to your phone and plays offline.',
     plate: 'blocksmash',
     name: 'Block Smash',
     summary:
-      'A block puzzle with an honest dealer: no ads, no revives, and pieces drawn at random without ever looking at your score. It installs to your phone and works offline.',
+      'A block puzzle with an honest dealer: pieces are drawn at random without ever looking at your score. It installs to your phone and works offline.',
     detail: [
       'Daily puzzle that everyone plays with the same pieces, with hints and a solver',
       'Classic, Timed and Zen modes, seven themes, stats and music',

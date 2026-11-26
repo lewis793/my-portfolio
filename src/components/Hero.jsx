@@ -17,7 +17,7 @@ const STATS = [
   { to: 1600, suffix: '+', label: 'commits to GoKarya’s platform in two months' },
   { to: 61, suffix: '/63', label: 'Whisper cleanup tests passing' },
   { to: 46, suffix: '', label: 'F1 races in the strategy model' },
-  { from: 99, to: 0, suffix: '', label: 'ads in Block Smash' },
+  { from: 99, to: 0, suffix: '', label: 'rigged deals in Block Smash' },
 ];
 
 export default function Hero() {
