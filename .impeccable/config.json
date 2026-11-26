@@ -8,6 +8,24 @@
         "value": "inter",
         "createdAt": "2026-11-26T18:40:27.237Z",
         "reason": "Eidolon plate draws that app in its own brand typeface (Inter, per project-eidolon DESIGN.md); the site shell uses Bricolage Grotesque + Public Sans"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.3, 1.6, .5, 1)",
+        "createdAt": "2026-11-26T18:55:39.647Z",
+        "reason": "Block Smash plate reproduces the game's own toy-like easing (same curves in blocksmash/index.html)"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.3, 1.5, .5, 1)",
+        "createdAt": "2026-11-26T18:55:40.436Z",
+        "reason": "Block Smash plate reproduces the game's own toy-like easing (same curves in blocksmash/index.html)"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.3, 1.8, .5, 1)",
+        "createdAt": "2026-11-26T18:55:41.358Z",
+        "reason": "Block Smash plate reproduces the game's own toy-like easing (same curves in blocksmash/index.html)"
       }
     ]
   }

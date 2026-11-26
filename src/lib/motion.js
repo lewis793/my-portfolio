@@ -88,8 +88,8 @@ export function useMagnetic(strength = 0.35) {
   useEffect(() => {
     const el = ref.current;
     if (!el || !finePointer() || reducedMotion()) return;
-    const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
-    const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+    const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power4.out' });
+    const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power4.out' });
     const move = (e) => {
       const r = el.getBoundingClientRect();
       xTo((e.clientX - (r.left + r.width / 2)) * strength);
