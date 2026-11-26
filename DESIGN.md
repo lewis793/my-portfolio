@@ -32,7 +32,14 @@ The shell avoids violet so it never reads as a GoKarya page. Dark mode follows t
 - Corners: 14px on plates, pill buttons, 10px on inputs.
 
 ## Motion
-Only the Whisper plate moves (the waveform and caret), because that is what the app does. Everything respects `prefers-reduced-motion`.
+The site is meant to show off front-end craft, so motion is a feature, not a garnish. It lives in `src/lib/motion.js` (GSAP, ScrollTrigger, SplitText, Lenis) and `src/motion.css`.
+
+- **Scroll:** Lenis smooth scroll drives ScrollTrigger; in-page links go through `scrollToTarget`. A progress bar runs along the top.
+- **Hero:** a canvas block field (`BlockField.jsx`) lights up in Block Smash colours near the cursor, and a click sends a shockwave. The headline splits into letters that rise in, then swell in `wght`/`wdth` near the cursor.
+- **Plates act out their product while on screen** (`Plates.jsx`): Block Smash clears a row, Whisper types as you'd dictate, Eidolon streams a reply, Nexus approves its drafts, and the GoKarya particles morph between the three industries. Plates tilt with a glare highlight and wipe in with a clip-path.
+- **Chrome:** custom cursor with labels (`data-cursor="Play"`), magnetic buttons, a gliding nav pill, a theme toggle with a View Transition circle, a Ctrl/⌘K command palette, and film grain.
+- **Lower page:** headings reveal line by line, counters count up, the toolkit marquees speed up and lean with scroll speed, and a sent message bursts into blocks.
+- **Reduced motion:** no smooth scroll, no cursor, no splits or loops; plates show their finished state and counters show final values.
 
 ## Voice
 Plain, first person, specific. Say what a thing does and what is true about it (numbers from the repos), not adjectives. No em dashes.
@@ -43,3 +50,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Full redesign: neutral frame + per-project plates; logo grid and screenshot cards removed | The old site was a template (gradient name, icon nav, logo tooltips). Drawings of the real products say more than logos. |
 | 2026-11-26 | Hosting moved to `lewis793.github.io/my-portfolio` | Lewis's current GitHub account. Older uni repos stay on LG9757 and are linked from the footer. |
 | 2026-11-26 | Gestures left off the site | Lewis's call. |
+| 2026-11-26 | Full motion layer added (GSAP + Lenis, living plates, block-field hero, kinetic type, palette, cursor) | Lewis: the site should show off web design. Every effect is tied to the content (the blocks are Block Smash's, the plates show what each product does). |

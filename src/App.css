@@ -15,11 +15,12 @@
   --wrap: 1180px;
   --gutter: clamp(16px, 4vw, 40px);
   --radius: 14px;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
+/* Dark: follows the system unless the toggle has set a theme. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ground: #15191b;
     --surface: #1c2124;
     --ink: #e6e9e4;
@@ -28,12 +29,24 @@
     --accent: #8fa8ff;
     --accent-ink: #10151f;
     --focus: #8fa8ff;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --ground: #15191b;
+  --surface: #1c2124;
+  --ink: #e6e9e4;
+  --muted: #a3aba7;
+  --line: #2f3639;
+  --accent: #8fa8ff;
+  --accent-ink: #10151f;
+  --focus: #8fa8ff;
+  color-scheme: dark;
 }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+html { scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--ground);
@@ -60,16 +73,17 @@ a:hover { text-decoration-color: currentColor; }
 }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
 .wordmark { font: 700 19px/1 var(--display); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
-.topbar nav { display: flex; gap: 4px; }
+.topbar nav { display: flex; gap: 4px; position: relative; }
 .topbar nav a {
   text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500;
   padding: 6px 10px; border-radius: 8px; transition: color .15s, background-color .15s;
 }
 .topbar nav a:hover { color: var(--ink); }
-.topbar nav a[aria-current] { color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.topbar nav a { position: relative; z-index: 1; }
+.topbar nav a[aria-current] { color: var(--ink); }
 
 /* ---------- Hero ---------- */
-.hero { padding-top: clamp(56px, 11vh, 120px); padding-bottom: clamp(56px, 10vh, 112px); }
+.hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-top: clamp(40px, 8vh, 96px); padding-bottom: clamp(40px, 8vh, 96px); }
 .hero h1 {
   font: 650 clamp(40px, 7.2vw, 92px)/0.98 var(--display);
   font-variation-settings: 'wdth' 88;
@@ -127,16 +141,14 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 
 /* University: a plain list */
 .uni { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
-.uni li { border-top: 2px solid var(--ink); padding-top: 16px; }
+.uni li { position: relative; padding-top: 18px; }
+.uni li::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); transform: scaleX(var(--rule, 1)); transform-origin: left; }
 .uni h3 { font-size: 21px; }
 .uni h3 a { text-decoration: none; }
 .uni h3 a:hover { text-decoration: underline; }
 .uni p:not(.stack) { margin-top: 10px; color: var(--muted); font-size: 16px; }
 
 /* Toolkit */
-.toolkit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
-.toolkit dt { font: 650 18px/1.2 var(--display); }
-.toolkit dd { margin-top: 8px; color: var(--muted); font-size: 16px; }
 
 /* ---------- Contact ---------- */
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
@@ -155,12 +167,14 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 .form-status.is-sent { color: #1d7a4c; }
 .form-status.is-error { color: #b4372a; }
 @media (prefers-color-scheme: dark) {
-  .form-status.is-sent { color: #6fd19f; }
-  .form-status.is-error { color: #f08a7e; }
+  :root:not([data-theme="light"]) .form-status.is-sent { color: #6fd19f; }
+  :root:not([data-theme="light"]) .form-status.is-error { color: #f08a7e; }
 }
+:root[data-theme="dark"] .form-status.is-sent { color: #6fd19f; }
+:root[data-theme="dark"] .form-status.is-error { color: #f08a7e; }
 
 /* ---------- Footer ---------- */
-.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
 
 /* ================================================================
    Plates: each one drawn in its own project's colours
@@ -253,14 +267,14 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .cards, .uni { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .toolkit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .entry, .contact { grid-template-columns: minmax(0, 1fr); }
   .entry-flip > .plate { order: 0; }
   .hero-copy { margin-left: 0; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .cards, .uni, .toolkit, .form-row { grid-template-columns: minmax(0, 1fr); }
+  .cards, .uni, .form-row { grid-template-columns: minmax(0, 1fr); }
   .topbar nav a { padding: 6px 7px; font-size: 14px; }
   .topbar nav a[href="#university"] { display: none; }
   .entry > .plate { aspect-ratio: 4 / 3; }

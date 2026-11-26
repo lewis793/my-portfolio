@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-26T18:40:27.237Z",
+        "reason": "Eidolon plate draws that app in its own brand typeface (Inter, per project-eidolon DESIGN.md); the site shell uses Bricolage Grotesque + Public Sans"
+      }
+    ]
+  }
+}
