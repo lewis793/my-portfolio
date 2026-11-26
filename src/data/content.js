@@ -9,6 +9,7 @@ export const links = {
 export const work = [
   {
     id: 'nexus',
+    short: "An AI workspace for Salesforce consultants. Claude drafts requirements, decisions and risks from a client’s calls and emails, and a person approves each one.",
     plate: 'nexus',
     name: 'Nexus',
     role: 'Builder, since September 2026',
@@ -19,12 +20,13 @@ export const work = [
       'Postgres with row-level security, so each client’s data stays with that client',
       'Agent work runs through the Claude Agent SDK in the consultant’s own Claude Code',
     ],
-    stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Agent SDK', 'Vercel', 'Cloud Run'],
+    stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Agent SDK', 'Vercel'],
     links: [],
     note: 'Internal product, so there is no public link.',
   },
   {
     id: 'gokarya-site',
+    short: "GoKarya’s marketing site, rebuilt around a WebGL particle hero that changes shape as you hover each industry.",
     plate: 'gokarya',
     name: 'gokarya.com',
     role: 'Owner of the site redesign',
@@ -43,6 +45,7 @@ export const work = [
 export const projects = [
   {
     id: 'blocksmash',
+    short: 'A block puzzle with no ads, no revives and an honest random dealer. It installs to your phone and plays offline.',
     plate: 'blocksmash',
     name: 'Block Smash',
     summary:
@@ -60,6 +63,7 @@ export const projects = [
   },
   {
     id: 'whisper',
+    short: "Hold a shortcut, speak, let go, and tidy text appears wherever you’re typing. It runs entirely on your own PC.",
     plate: 'whisper',
     name: 'Whisper',
     summary:
@@ -74,6 +78,7 @@ export const projects = [
   },
   {
     id: 'eidolon',
+    short: 'A private AI that runs on your own machine and is learning to write like you.',
     plate: 'eidolon',
     name: 'Eidolon',
     summary:
@@ -91,6 +96,7 @@ export const projects = [
 export const university = [
   {
     id: 'dissertation',
+    short: 'Adam, Muon and Sophia compared on RNN, GRU and LSTM language models, with significance tests.',
     name: 'Dissertation: comparing optimisers for language models',
     summary:
       'Trained RNN, GRU and LSTM language models on WikiText-2 and Penn Treebank with Adam, Muon and Sophia, then tested whether the differences between optimisers were significant.',
@@ -99,6 +105,7 @@ export const university = [
   },
   {
     id: 'f1',
+    short: 'Predicts lap times per tyre compound from practice data, then picks the fastest pit strategy.',
     name: 'F1 strategy model',
     summary:
       'Predicts lap times for each tyre compound from practice data, allowing for fuel load, tyre age, driver and team, then picks the pit strategy with the shortest race time. 46 races from 2023 and 2024.',
@@ -107,6 +114,7 @@ export const university = [
   },
   {
     id: 'one-guard',
+    short: 'A group-built finance learning platform with lessons that unlock as you go.',
     name: 'One Guard (group project)',
     summary:
       'A finance learning platform with sign-in, a learner dashboard, lessons that unlock as you progress, and a paid course flow.',

@@ -7,7 +7,7 @@ import Cursor from './components/Cursor.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
 import Marquee from './components/Marquee.jsx';
-import { gsap, SplitText, startSmoothScroll, scrollToTarget, reducedMotion, useMagnetic } from './lib/motion.js';
+import { gsap, SplitText, ScrollTrigger, startSmoothScroll, scrollToTarget, reducedMotion, useMagnetic } from './lib/motion.js';
 import { links, work, projects, university, toolkit } from './data/content.js';
 import './App.css';
 import './motion.css';
@@ -78,47 +78,52 @@ function MagneticLink({ href, children }) {
   );
 }
 
-function Detail({ item }) {
+function More({ item }) {
+  const [open, setOpen] = useState(false);
+  const id = `more-${item.id}`;
+  const toggle = () => {
+    setOpen((o) => !o);
+    setTimeout(() => ScrollTrigger.refresh(), 520);
+  };
   return (
-    <>
-      <p className="entry-summary">{item.summary}</p>
-      <ul className="entry-detail">
-        {item.detail.map((d) => <li key={d}>{d}</li>)}
-      </ul>
-      <p className="stack">{item.stack.join(', ')}</p>
-    </>
+    <div className={`more${open ? ' is-open' : ''}`}>
+      <button type="button" className="more-toggle" aria-expanded={open} aria-controls={id} onClick={toggle}>
+        How it&apos;s built
+        <span className="more-icon" aria-hidden="true" />
+      </button>
+      <div className="more-panel" id={id} role="region" aria-label={`How ${item.name} is built`}>
+        <div>
+          <ul className="entry-detail">
+            {item.detail.map((d) => <li key={d}>{d}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 }
 
-function Entry({ item, flip }) {
+function Card({ item, variant }) {
   const first = item.links[0];
+  const cursor = !first ? undefined : first.label === 'Play it' ? 'Play' : first.label === 'Code' ? 'Code' : 'Visit';
   return (
-    <article className={`entry${flip ? ' entry-flip' : ''}`} id={item.id}>
-      <Plate kind={item.plate} href={first?.href} cursor={first ? 'Visit' : undefined} />
-      <div className="entry-body reveal">
-        <h3>{item.name}</h3>
-        {item.role && <p className="entry-role">{item.role}</p>}
-        <Detail item={item} />
-        {(item.links.length > 0 || item.note) && (
+    <article className={`card card-${variant}`} id={item.id}>
+      <Plate kind={item.plate} href={first?.href} cursor={cursor} />
+      <div className="card-body">
+        <div className="card-head">
+          <h3>{item.name}</h3>
+          {item.role && <span className="card-role">{item.role}</span>}
+        </div>
+        <p className="card-short">{item.short}</p>
+        <ul className="tags" aria-label="Built with">
+          {item.stack.map((t) => <li key={t}>{t}</li>)}
+        </ul>
+        <div className="card-foot">
+          <More item={item} />
           <div className="entry-links">
             {item.links.map((l) => <MagneticLink key={l.href} href={l.href}>{l.label}</MagneticLink>)}
             {item.note && <span className="entry-note">{item.note}</span>}
           </div>
-        )}
-      </div>
-    </article>
-  );
-}
-
-function ProjectCard({ item }) {
-  const first = item.links[0];
-  return (
-    <article className="card" id={item.id}>
-      <Plate kind={item.plate} href={first.href} cursor={first.label === 'Play it' ? 'Play' : 'Code'} />
-      <h3>{item.name}</h3>
-      <Detail item={item} />
-      <div className="entry-links">
-        {item.links.map((l) => <MagneticLink key={l.href} href={l.href}>{l.label}</MagneticLink>)}
+        </div>
       </div>
     </article>
   );
@@ -165,11 +170,11 @@ export default function App() {
     gsap.utils.toArray('.section-head p, .reveal').forEach((el) => {
       gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
     });
-    gsap.utils.toArray('.cards .card, .uni li, .contact .form').forEach((el, i) => {
+    gsap.utils.toArray('.card, .uni-list li, .contact .form').forEach((el, i) => {
       gsap.from(el, { y: 70, opacity: 0, duration: 1.2, ease: 'expo.out', delay: (i % 3) * 0.08, scrollTrigger: { trigger: el, start: 'top 90%' } });
     });
     // University rules draw across.
-    gsap.utils.toArray('.uni li').forEach((el) => {
+    gsap.utils.toArray('.uni-list li').forEach((el) => {
       gsap.fromTo(el, { '--rule': 0 }, { '--rule': 1, duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 90%' } });
     });
     return () => splits.forEach((s) => s.revert());
@@ -202,32 +207,37 @@ export default function App() {
         <section className="section wrap" id="work" aria-labelledby="work-h">
           <header className="section-head">
             <h2 id="work-h">Work at GoKarya</h2>
-            <p>GoKarya builds AI systems for its clients. On placement I build its product and its website.</p>
+            <p>On placement I build GoKarya&apos;s product and its website.</p>
           </header>
-          {work.map((item, i) => <Entry key={item.id} item={item} flip={i % 2 === 1} />)}
+          <div className="work-grid">
+            {work.map((item) => <Card key={item.id} item={item} variant="work" />)}
+          </div>
         </section>
 
         <section className="section wrap" id="projects" aria-labelledby="projects-h">
           <header className="section-head">
             <h2 id="projects-h">Projects</h2>
-            <p>Things I&apos;ve built in my own time. All three are open source.</p>
+            <p>Built in my own time, and all open source.</p>
           </header>
-          <div className="cards">
-            {projects.map((item) => <ProjectCard key={item.id} item={item} />)}
+          <div className="bento">
+            {projects.map((item, i) => <Card key={item.id} item={item} variant={i === 0 ? 'feature' : 'side'} />)}
           </div>
         </section>
 
         <section className="section wrap" id="university" aria-labelledby="uni-h">
           <header className="section-head">
             <h2 id="uni-h">University</h2>
-            <p>Computer Science and AI at the University of Bath, with the final year still to come.</p>
+            <p>Computer Science and AI at the University of Bath.</p>
           </header>
-          <ul className="uni">
+          <ul className="uni-list">
             {university.map((u) => (
               <li key={u.id}>
-                <h3><ExternalLink href={u.href} cursor="Code">{u.name}</ExternalLink></h3>
-                <p>{u.summary}</p>
-                <p className="stack">{u.stack.join(', ')}</p>
+                <a href={u.href} target="_blank" rel="noopener noreferrer" data-cursor="Code">
+                  <span className="uni-name">{u.name}</span>
+                  <span className="uni-short">{u.short}</span>
+                  <span className="uni-stack">{u.stack.join(', ')}</span>
+                  <svg className="uni-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </a>
               </li>
             ))}
           </ul>
@@ -255,8 +265,7 @@ export default function App() {
             <header className="section-head">
               <h2 id="contact-h">Get in touch</h2>
               <p>
-                For roles, projects or questions about anything here, send me a message and I&apos;ll reply
-                by email. I&apos;m also on <ExternalLink href={links.linkedin} cursor="Open">LinkedIn</ExternalLink> and{' '}
+                Send a message and I&apos;ll reply by email. I&apos;m also on <ExternalLink href={links.linkedin} cursor="Open">LinkedIn</ExternalLink> and{' '}
                 <ExternalLink href={links.github} cursor="Open">GitHub</ExternalLink>.
               </p>
             </header>
