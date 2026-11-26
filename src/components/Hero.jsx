@@ -118,15 +118,8 @@ export default function Hero() {
         <h1 ref={title}>I build AI products, and small, careful software for myself.</h1>
         <div className="hero-copy">
           <p className="lede">
-            I&apos;m on a placement year at <a href="#work">GoKarya</a>, where I build{' '}
-            <a href="#nexus">Nexus</a>, a workspace where Claude drafts a consulting team&apos;s
-            paperwork and people approve it. After this I go back to the University of Bath for the final
-            year of my Computer Science and AI degree.
-          </p>
-          <p>
-            Outside work I make things I want to use myself: a <a href="#blocksmash">puzzle game</a>{' '}
-            without the ads, a <a href="#whisper">dictation app</a> that never leaves my PC, and an{' '}
-            <a href="#eidolon">AI that runs locally</a>.
+            On a placement year at <a href="#work">GoKarya</a>, building <a href="#nexus">Nexus</a>.
+            Then back to Bath for the last year of Computer Science and AI.
           </p>
           <div className="hero-actions">
             <Magnetic href="#contact" className="button button-solid">Get in touch</Magnetic>

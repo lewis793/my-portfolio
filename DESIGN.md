@@ -51,3 +51,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Hosting moved to `lewis793.github.io/my-portfolio` | Lewis's current GitHub account. Older uni repos stay on LG9757 and are linked from the footer. |
 | 2026-11-26 | Gestures left off the site | Lewis's call. |
 | 2026-11-26 | Full motion layer added (GSAP + Lenis, living plates, block-field hero, kinetic type, palette, cursor) | Lewis: the site should show off web design. Every effect is tied to the content (the blocks are Block Smash's, the plates show what each product does). |
+| 2026-11-26 | Less text: one-sentence summaries, tag chips, details behind "How it's built"; Work two-up, Projects bento, University as rows | Lewis: too much text and every section looked the same. Facts are kept, just not shown by default. |
