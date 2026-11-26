@@ -59,3 +59,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Pinned chapters folded into one tabbed Work viewer; Projects merged into Work | Lewis: too much scrolling to get past the projects. The viewer is about a screen tall and keeps every demo. |
 | 2026-11-26 | Toolkit marquee replaced by a tools-by-project grid | Lewis: the giant scrolling outlined words looked like AI slop. The grid says something true: where each tool was actually used. |
 | 2026-11-26 | Tools grid redrawn as chips and project tokens joined by lines on hover | Lewis: the idea was right but the grid read like a spreadsheet. |
+| 2026-11-26 | Tools section centred | Lewis: didn't like it aligned to the left. Centred, the chips and lines read as a tree down to the projects. |
