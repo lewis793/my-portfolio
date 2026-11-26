@@ -101,7 +101,7 @@ export default function App() {
     if (reducedMotion()) return;
 
     // Section headings rise in line by line from behind a mask.
-    const splits = gsap.utils.toArray('.section-head h2, .footer-name').map((el) => {
+    const splits = gsap.utils.toArray('.section-head h2').map((el) => {
       return SplitText.create(el, {
         type: 'lines,chars', mask: 'lines', autoSplit: true,
         onSplit: (self) => gsap.from(self.chars, {

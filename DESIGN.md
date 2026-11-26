@@ -61,3 +61,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Tools grid redrawn as chips and project tokens joined by lines on hover | Lewis: the idea was right but the grid read like a spreadsheet. |
 | 2026-11-26 | Tools section centred | Lewis: didn't like it aligned to the left. Centred, the chips and lines read as a tree down to the projects. |
 | 2026-11-26 | Contact becomes a compact strip: heading and links on one line, form on one row, message box grows as you type | Lewis: the contact section was too big. |
+| 2026-11-26 | Footer name shrunk from wall-sized to a 22px heading on one row with the footer notes | Lewis: the name was too big. |
