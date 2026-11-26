@@ -122,7 +122,7 @@
 .ei-ai span { animation: word-in .35s ease-out both; }
 @keyframes word-in { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: none; } }
 
-/* Nexus */
+/* GoKarya platform */
 .nx-main { position: relative; }
 .nx-row { transition: opacity .45s, transform .45s cubic-bezier(.65, 0, .2, 1), max-height .45s cubic-bezier(.65, 0, .2, 1), padding .45s, margin .45s, border-color .3s, background-color .3s; max-height: 80px; overflow: hidden; }
 .nx-row.s0 { animation: nx-in .6s cubic-bezier(.2, .9, .3, 1) both; }

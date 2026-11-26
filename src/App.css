@@ -274,8 +274,8 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 .ei-me { justify-self: end; max-width: 80%; background: #ece7de; color: #101012; padding: 9px 13px; border-radius: 14px 14px 4px 14px; font-size: 14px; }
 .ei-ai { max-width: 88%; color: #c5ced6; font-size: 14px; line-height: 1.55; }
 
-/* Nexus: an inbox of drafts waiting for a person */
-.plate-nexus { background: linear-gradient(160deg, #e9e7f2, #d9d6e6); padding: 22px 0 0 22px; }
+/* GoKarya platform: an inbox of drafts waiting for a person */
+.plate-platform { background: linear-gradient(160deg, #e9e7f2, #d9d6e6); padding: 22px 0 0 22px; }
 .nx-app {
   height: 100%; display: grid; grid-template-columns: 112px minmax(0, 1fr); background: #fff; color: #1c1722;
   border-radius: 10px 0 0 0; box-shadow: 0 14px 40px rgba(28,23,34,.18); font: 400 12px/1.35 system-ui, 'Segoe UI', sans-serif;

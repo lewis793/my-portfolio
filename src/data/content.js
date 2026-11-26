@@ -8,17 +8,17 @@ export const links = {
 
 export const work = [
   {
-    id: 'nexus',
-    short: "An AI workspace for Salesforce consultants. Claude drafts requirements, decisions and risks from a client’s calls and emails, and a person approves each one.",
-    plate: 'nexus',
-    name: 'Nexus',
-    role: 'Builder, since September 2026',
-    summary:
-      "GoKarya's workspace for Salesforce delivery teams. Consultants bring in a client's calls, emails and documents. Claude drafts the requirements, decisions and risks it finds in them, each one quoting its source, and nothing is recorded until a person approves it.",
+    id: 'platform',
+    short: 'The one place GoKarya’s consultants run client work: projects, calendar, meetings and tasks, with AI agents that draft the paperwork and people who approve it.',
+    plate: 'platform',
+    name: 'GoKarya’s delivery platform',
+    role: 'Built from the first commit, September 2026',
     detail: [
-      'Built from the first commit, with 670+ commits merged in its first two months',
-      'Postgres with row-level security, so each client’s data stays with that client',
-      'Agent work runs through the Claude Agent SDK in the consultant’s own Claude Code',
+      'Projects: boards, sprints, backlog, ideas with votes, dashboards, reports, time tracking and its own query language',
+      'Calendar and meetings: transcripts, live transcription, prep and follow-ups',
+      'Client workspaces where every requirement, decision and risk links back to the call or email it came from',
+      'AI agents pick up queued tasks inside one client’s data and stop for a person to approve',
+      '1,600+ commits, 160+ screens and 540 test files in two months',
     ],
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Agent SDK', 'Vercel'],
     links: [],

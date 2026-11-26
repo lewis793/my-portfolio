@@ -3,7 +3,7 @@
 The reference for how the site looks. Changing it is normal; add a line to the Decisions Log when you do.
 
 ## Idea
-The site is a quiet, neutral frame, and the work carries the colour. Each project gets a **plate**: a small drawing of the real thing in that project's own palette (Block Smash's brick toy set, Eidolon's obsidian and marble, Whisper's dictation bar, the GoKarya violet void, a Nexus review inbox). Plates live in `src/components/Plates.jsx` and are decorative (`aria-hidden`). The text beside them carries the meaning.
+The site is a quiet, neutral frame, and the work carries the colour. Each project gets a **plate**: a small drawing of the real thing in that project's own palette (Block Smash's brick toy set, Eidolon's obsidian and marble, Whisper's dictation bar, the GoKarya violet void, the GoKarya platform's review inbox). Plates live in `src/components/Plates.jsx` and are decorative (`aria-hidden`). The text beside them carries the meaning.
 
 ## Audience and job
 Recruiters, engineers and anyone who meets me at GoKarya or Bath. In thirty seconds it should show that I ship real software, and give a quick way to get in touch.
@@ -36,7 +36,7 @@ The site is meant to show off front-end craft, so motion is a feature, not a gar
 
 - **Scroll:** Lenis smooth scroll drives ScrollTrigger; in-page links go through `scrollToTarget`. A progress bar runs along the top.
 - **Hero:** a canvas block field (`BlockField.jsx`) lights up in Block Smash colours near the cursor, and a click sends a shockwave. The headline splits into letters that rise in, then swell in `wght`/`wdth` near the cursor.
-- **Plates act out their product while on screen** (`Plates.jsx`): Block Smash clears a row, Whisper types as you'd dictate, Eidolon streams a reply, Nexus approves its drafts, and the GoKarya particles morph between the three industries. Plates tilt with a glare highlight and wipe in with a clip-path.
+- **Plates act out their product while on screen** (`Plates.jsx`): Block Smash clears a row, Whisper types as you'd dictate, Eidolon streams a reply, the GoKarya platform approves its drafts, and the GoKarya particles morph between the three industries. Plates tilt with a glare highlight and wipe in with a clip-path.
 - **Chrome:** custom cursor with labels (`data-cursor="Play"`), magnetic buttons, a gliding nav pill, a theme toggle with a View Transition circle, a Ctrl/⌘K command palette, and film grain.
 - **Lower page:** headings reveal line by line, counters count up, the toolkit marquees speed up and lean with scroll speed, and a sent message bursts into blocks.
 - **Reduced motion:** no smooth scroll, no cursor, no splits or loops; plates show their finished state and counters show final values.

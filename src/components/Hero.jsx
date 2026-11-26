@@ -14,7 +14,7 @@ function Magnetic({ className, children, ...rest }) {
 }
 
 const STATS = [
-  { to: 670, suffix: '+', label: 'commits to Nexus in two months' },
+  { to: 1600, suffix: '+', label: 'commits to GoKarya’s platform in two months' },
   { to: 61, suffix: '/63', label: 'Whisper cleanup tests passing' },
   { to: 46, suffix: '', label: 'F1 races in the strategy model' },
   { from: 99, to: 0, suffix: '', label: 'ads in Block Smash' },
@@ -118,7 +118,7 @@ export default function Hero() {
         <h1 ref={title}>I build AI products, and small, careful software for myself.</h1>
         <div className="hero-copy">
           <p className="lede">
-            On a placement year at <a href="#work">GoKarya</a>, building <a href="#nexus">Nexus</a>.
+            On a placement year at <a href="#work">GoKarya</a>, building its <a href="#platform">delivery platform</a>.
             Then back to Bath for the last year of Computer Science and AI.
           </p>
           <div className="hero-actions">

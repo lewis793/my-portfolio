@@ -144,14 +144,14 @@ function Eidolon({ active }) {
   );
 }
 
-/* ------------------------------------------------------------------ Nexus */
+/* ------------------------------------------------------------------ GoKarya platform */
 const DRAFTS = [
   ['Requirement', 'Quotes need a second approver over 50k', 'Kickoff call'],
   ['Decision', 'Keep the existing lead routing rules', 'Email thread'],
   ['Risk', 'Data migration window overlaps quarter end', 'Workshop notes'],
 ];
 
-function Nexus({ active }) {
+function Platform({ active }) {
   // Per row: 0 waiting, 1 pressed, 2 approved, 3 gone
   const [rows, setRows] = useState([0, 0, 0]);
   useLoop(active && !reducedMotion(), async (wait) => {
@@ -171,11 +171,12 @@ function Nexus({ active }) {
   return (
     <div className="nx-app">
       <div className="nx-side">
-        <b>Nexus</b>
+        <b>GoKarya</b>
+        <span>My work</span>
         <span className="on">Inbox</span>
-        <span>Requirements</span>
+        <span>Calendar</span>
+        <span>Projects</span>
         <span>Meetings</span>
-        <span>Ask</span>
       </div>
       <div className="nx-main">
         <div className="nx-title">Waiting for review <em key={left}>{left}</em></div>
@@ -312,7 +313,7 @@ function GoKarya({ active }) {
 }
 
 /* ------------------------------------------------------------------ Frame */
-const PLATES = { blocksmash: BlockSmash, whisper: Whisper, eidolon: Eidolon, nexus: Nexus, gokarya: GoKarya };
+const PLATES = { blocksmash: BlockSmash, whisper: Whisper, eidolon: Eidolon, platform: Platform, gokarya: GoKarya };
 
 export default function Plate({ kind, href, cursor }) {
   const P = PLATES[kind];
