@@ -5,9 +5,9 @@ import Showcase from './components/Showcase.jsx';
 import Contact from './components/Contact.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
-import Marquee from './components/Marquee.jsx';
+import Tools from './components/Tools.jsx';
 import { gsap, SplitText, startSmoothScroll, scrollToTarget, reducedMotion } from './lib/motion.js';
-import { links, work, projects, university, toolkit } from './data/content.js';
+import { links, work, projects, university, toolGroups, coursework } from './data/content.js';
 import './App.css';
 import './motion.css';
 import './casestudy.css';
@@ -172,21 +172,16 @@ export default function App() {
           </ul>
         </section>
 
-        <section className="section section-toolkit" aria-labelledby="toolkit-h">
-          <div className="wrap">
-            <header className="section-head">
-              <h2 id="toolkit-h">What I work with</h2>
-              <p>Scroll faster and the rows speed up.</p>
-            </header>
-          </div>
-          <div className="toolkit">
-            {toolkit.map((t, i) => (
-              <div className="toolkit-row" key={t.group}>
-                <span className="toolkit-label wrap">{t.group}</span>
-                <Marquee items={t.items} reverse={i % 2 === 1} label={t.group} />
-              </div>
-            ))}
-          </div>
+        <section className="section wrap" id="tools" aria-labelledby="tools-h">
+          <header className="section-head">
+            <h2 id="tools-h">Tools</h2>
+            <p>Where I&apos;ve used each one.</p>
+          </header>
+          <Tools
+            groups={toolGroups}
+            columns={[...work, ...projects, ...university, coursework]}
+            workIds={[...work, ...projects].map((p) => p.id)}
+          />
         </section>
 
         <section className="section wrap" id="contact" aria-labelledby="contact-h">

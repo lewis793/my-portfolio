@@ -156,6 +156,35 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 .uni-list a:hover .uni-arrow { transform: translate(3px, -3px); }
 .uni-list a:focus-visible { outline-offset: -2px; }
 
+/* ---------- Tools grid ---------- */
+.tl-wrap { overflow-x: auto; }
+.tl { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.tl thead th { padding: 0 4px 12px; vertical-align: bottom; font-weight: 600; font-size: 13px; color: var(--muted); }
+.tl thead th button, .tl thead th span {
+  display: inline-block; padding: 6px 8px; border: 0; border-radius: 8px; background: none; color: inherit; font: inherit; white-space: nowrap; cursor: pointer;
+  transition: color .2s, background-color .2s;
+}
+.tl thead th span { cursor: help; }
+.tl thead th.on button, .tl thead th.on span, .tl thead th button:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.tl-group th { padding: 18px 0 6px; text-align: left; font: 650 18px/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.tl tbody:first-of-type .tl-group th { padding-top: 6px; }
+.tl tbody tr:not(.tl-group) { border-top: 1px solid var(--line); transition: background-color .2s; }
+.tl tbody tr:not(.tl-group) th { padding: 6px 16px 6px 0; text-align: left; font-weight: 500; white-space: nowrap; width: 1%; }
+.tl td { text-align: center; padding: 0 4px; }
+.tl td.col-on { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.tl tr.on { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.tl-dot { display: inline-block; width: 9px; height: 9px; border-radius: 3px; background: var(--ink); vertical-align: middle; transition: transform .3s cubic-bezier(.16, 1, .3, 1), background-color .2s; }
+.tl tr.on .tl-dot, .tl td.col-on .tl-dot { background: var(--accent); transform: scale(1.35); }
+.tl-list { display: none; }
+.tl-list h3 { font-size: 18px; margin: 20px 0 6px; }
+.tl-list ul { list-style: none; padding: 0; }
+.tl-list li { padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.tl-list li span { color: var(--muted); }
+@media (max-width: 860px) {
+  .tl-wrap { display: none; }
+  .tl-list { display: block; }
+}
+
 /* ---------- Contact ---------- */
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
 .form { display: grid; gap: 16px; }

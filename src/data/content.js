@@ -23,6 +23,7 @@ export const work = [
     ),
     hint: 'Approve a draft, or hover one to see its source',
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Agent SDK', 'Vercel'],
+    uses: ['React', 'Node', 'Supabase', 'Cloud Run'],
     links: [],
     note: 'Internal product, so there is no public link.',
   },
@@ -38,6 +39,7 @@ export const work = [
     ),
     hint: 'Pick an industry, then move your cursor through the field',
     stack: ['React', 'three.js', 'GSAP', 'Vite', 'Vercel'],
+    uses: ['JavaScript'],
     links: [{ label: 'Visit gokarya.com', href: 'https://gokarya.com' }],
   },
 ];
@@ -120,9 +122,20 @@ export const university = [
   },
 ];
 
-export const toolkit = [
-  { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Rust', 'Java', 'SQL', 'Haskell'] },
-  { group: 'Building products', items: ['React', 'Next.js', 'Node', 'Electron', 'Tauri', 'Postgres', 'SQLite'] },
-  { group: 'AI and data', items: ['Claude API and Agent SDK', 'llama.cpp', 'PyTorch', 'TensorFlow', 'XGBoost', 'pandas'] },
-  { group: 'Shipping', items: ['Git and GitHub', 'Vercel', 'Google Cloud Run', 'Supabase', 'Claude Code'] },
+// The tools grid is built from each project's stack, so it only shows what I've actually used.
+// Small tags (HTML, CSS, Vite, PWA, Jupyter) stay on the project cards but not in the grid.
+// `uses` adds tools a project relies on that aren't worth a tag on its card.
+export const toolGroups = [
+  { label: 'Languages', tools: ['TypeScript', 'JavaScript', 'Python', 'Rust', 'Java', 'Haskell'] },
+  { label: 'Frameworks', tools: ['React', 'Next.js', 'Node', 'Electron', 'Tauri', 'three.js', 'GSAP'] },
+  { label: 'AI and data', tools: ['Claude Agent SDK', 'llama.cpp', 'PyTorch', 'TensorFlow', 'XGBoost', 'pandas', 'scikit-learn'] },
+  { label: 'Data and hosting', tools: ['Postgres', 'Supabase', 'SQLite', 'Vercel', 'Cloud Run'] },
 ];
+
+// Coursework from the degree that isn't a project of its own.
+export const coursework = {
+  id: 'coursework',
+  short: 'Coursework',
+  stack: ['Java', 'Haskell', 'TensorFlow', 'Python'],
+  note: 'Object-oriented programming in Java, a role-playing game in Haskell, and rainfall and image-compression models in TensorFlow',
+};
