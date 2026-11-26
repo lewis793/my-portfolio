@@ -24,7 +24,7 @@ const STATS = [
   { value: 'New York', label: 'AI Engineer intern at GoKarya, on site since September 2026' },
   { value: '67.8%', count: { to: 67.8, decimals: 1, suffix: '%' }, label: 'average so far in my Computer Science and AI master’s at Bath' },
   { value: 'A*A*AA', label: 'A levels in Maths, Further Maths, Computer Science and Business' },
-  { value: '2 years', label: 'tutoring GCSE maths, around five years of part-time work' },
+  { value: '5 years', label: 'customer service at Alton Towers, part time alongside school and uni' },
 ];
 
 export default function Hero() {
