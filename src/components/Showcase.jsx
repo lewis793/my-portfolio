@@ -69,7 +69,8 @@ export default function Showcase({ groups }) {
         <span className="sc-pill" style={pill ? { width: pill.W, clipPath: `inset(${pill.y}px ${pill.W - pill.x - pill.w}px ${pill.H - pill.y - pill.h}px ${pill.x}px round 999px)` } : { opacity: 0 }} />
         {groups.map((g) => (
           <div className="sc-group" key={g.label} role="presentation">
-            <span className="sc-group-label" aria-hidden="true">{g.label}</span>
+            <span className="sc-group-label" aria-hidden="true">{g.label} <em>{g.items.length}</em></span>
+            <div className="sc-tray" role="presentation">
             {g.items.map((p) => (
               <button
                 key={p.id}
@@ -78,6 +79,7 @@ export default function Showcase({ groups }) {
                 type="button"
                 role="tab"
                 aria-selected={p.id === current}
+                aria-label={`${p.name} (${g.label})`}
                 aria-controls={`panel-${p.id}`}
                 tabIndex={p.id === current ? 0 : -1}
                 className={`sc-tab${p.id === current ? ' on' : ''}`}
@@ -86,6 +88,7 @@ export default function Showcase({ groups }) {
                 {p.name}
               </button>
             ))}
+            </div>
           </div>
         ))}
       </div>
