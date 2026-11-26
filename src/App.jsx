@@ -175,7 +175,6 @@ export default function App() {
         <section className="section wrap" id="tools" aria-labelledby="tools-h">
           <header className="section-head">
             <h2 id="tools-h">Tools</h2>
-            <p>Where I&apos;ve used each one.</p>
           </header>
           <Tools
             groups={toolGroups}
