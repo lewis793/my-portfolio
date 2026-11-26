@@ -97,8 +97,9 @@ export default function Showcase({ groups }) {
         <div className="sc-text" role="tabpanel" id={`panel-${item.id}`} aria-labelledby={item.id} key={item.id}>
           <p className="sc-kicker">{item.kicker}</p>
           <h3 className="sc-name">{item.name}</h3>
-          <dl className="sc-steps">
-            {item.steps.map((s) => (
+          <p className="sc-lead">{item.steps[0].text}</p>
+          <dl className="sc-facts">
+            {item.steps.slice(1).map((s) => (
               <div key={s.label}>
                 <dt>{s.label}</dt>
                 <dd>{s.text}</dd>

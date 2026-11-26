@@ -21,9 +21,12 @@
 @keyframes sc-in { from { opacity: 0; transform: translateY(12px); } }
 .sc-kicker { color: var(--muted); font-size: 15px; }
 .sc-name { font: 650 clamp(34px, 3.8vw, 54px)/1 var(--display); letter-spacing: -0.035em; margin-top: 6px; }
-.sc-steps { margin: 22px 0 0; display: grid; gap: 14px; }
-.sc-steps dt { font: 600 13px/1.3 var(--body); color: var(--muted); }
-.sc-steps dd { margin: 3px 0 0; font-size: 16.5px; line-height: 1.55; max-width: 46ch; }
+.sc-lead { margin-top: 16px; font-size: 19px; line-height: 1.45; max-width: 34ch; }
+.sc-facts { margin: 22px 0 0; max-width: 46ch; }
+.sc-facts > div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.sc-facts > div:last-child { border-bottom: 1px solid var(--line); }
+.sc-facts dt { font: 600 14px/1.5 var(--display); color: var(--ink); }
+.sc-facts dd { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
 .sc-text .tags { margin-top: 22px; }
 .sc-text .entry-links { margin-top: 16px; }
 .sc-demo { display: grid; gap: 12px; min-width: 0; position: sticky; top: 84px; }
