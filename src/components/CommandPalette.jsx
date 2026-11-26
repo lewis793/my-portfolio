@@ -6,14 +6,14 @@ import { links, work, projects, university } from '../data/content.js';
 // Ctrl+K / Cmd+K: jump to any section or project, open a link, or switch theme.
 function buildCommands() {
   const go = (id) => () => scrollToTarget(`#${id}`);
+  const show = (id) => () => { window.dispatchEvent(new CustomEvent('showproject', { detail: id })); scrollToTarget('.sc'); };
   const open = (href) => () => window.open(href, '_blank', 'noopener');
   return [
     { group: 'Go to', label: 'Top', run: go('top') },
-    { group: 'Go to', label: 'Work at GoKarya', run: go('work') },
-    { group: 'Go to', label: 'Projects', run: go('projects') },
+    { group: 'Go to', label: 'Work', run: go('work') },
     { group: 'Go to', label: 'University', run: go('university') },
     { group: 'Go to', label: 'Get in touch', run: go('contact') },
-    ...[...work, ...projects].map((p) => ({ group: 'Projects', label: p.name, hint: p.stack.slice(0, 3).join(', '), run: go(p.id) })),
+    ...[...work, ...projects].map((p) => ({ group: 'Projects', label: p.name, hint: p.stack.slice(0, 3).join(', '), run: show(p.id) })),
     ...university.map((u) => ({ group: 'University', label: u.name, run: open(u.href) })),
     { group: 'Links', label: 'Play Block Smash', run: open('https://lewis793.github.io/blocksmash/') },
     { group: 'Links', label: 'GitHub', run: open(links.github) },

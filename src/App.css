@@ -352,7 +352,7 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
 }
 @media (max-width: 380px) {
   .wordmark { font-size: 17px; }
-  .topbar nav a[href="#projects"] { display: none; }
+  .topbar nav a[href="#contact"] { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

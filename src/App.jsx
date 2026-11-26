@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import Hero from './components/Hero.jsx';
-import CaseStudy from './components/CaseStudy.jsx';
+import Showcase from './components/Showcase.jsx';
 import Contact from './components/Contact.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
@@ -14,7 +14,6 @@ import './casestudy.css';
 
 const NAV = [
   { id: 'work', label: 'Work' },
-  { id: 'projects', label: 'Projects' },
   { id: 'university', label: 'University' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -85,7 +84,11 @@ export default function App() {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      scrollToTarget(target);
+      // A project id selects that project in the Work viewer, then scrolls to the viewer.
+      if (target.getAttribute('role') === 'tab') {
+        window.dispatchEvent(new CustomEvent('showproject', { detail: target.id }));
+        scrollToTarget('.sc');
+      } else scrollToTarget(target);
       history.replaceState(null, '', a.getAttribute('href'));
     };
     document.addEventListener('click', onClick);
@@ -143,18 +146,11 @@ export default function App() {
       <main id="main">
         <Hero />
 
-        <section className="section wrap cs-section" id="work" aria-labelledby="work-h">
+        <section className="section wrap" id="work" aria-labelledby="work-h">
           <header className="section-head">
-            <h2 id="work-h">Work at GoKarya</h2>
+            <h2 id="work-h">Work</h2>
           </header>
-          {work.map((item) => <CaseStudy key={item.id} item={item} />)}
-        </section>
-
-        <section className="section wrap cs-section" id="projects" aria-labelledby="projects-h">
-          <header className="section-head">
-            <h2 id="projects-h">Projects</h2>
-          </header>
-          {projects.map((item) => <CaseStudy key={item.id} item={item} />)}
+          <Showcase groups={[{ label: 'GoKarya', items: work }, { label: 'Personal', items: projects }]} />
         </section>
 
         <section className="section wrap" id="university" aria-labelledby="uni-h">

@@ -175,8 +175,7 @@
   .hero { min-height: auto; padding-top: 40px; }
 }
 @media (max-width: 640px) {
-  .topbar nav a[href="#projects"] { display: inline; }
-  .topbar nav a[href="#university"], .topbar nav a[href="#contact"] { display: none; }
+  .topbar nav a[href="#university"] { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

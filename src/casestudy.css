@@ -1,43 +1,39 @@
 /* Case-study chapters and their interactive demos. */
 
-/* ---------- Chapter ---------- */
-.cs-section .section-head { margin-bottom: 8px; }
-.cs {
-  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: center;
-  padding-block: clamp(40px, 7vh, 72px);
+/* ---------- Work viewer ---------- */
+.sc-tabs { position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 28px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.sc-group { display: flex; align-items: center; gap: 4px; }
+.sc-group-label { color: var(--muted); font-size: 13px; margin-right: 8px; }
+.sc-tab {
+  position: relative; z-index: 1; padding: 9px 14px; border: 0; border-radius: 999px; background: none; cursor: pointer;
+  color: var(--muted); font: 600 15px/1 var(--body); white-space: nowrap; transition: color .2s;
 }
-.cs + .cs, .pin-spacer + .cs, .pin-spacer + .pin-spacer > .cs { border-top: 1px solid var(--line); }
-.cs.is-pinned { height: calc(100svh - 60px); padding-block: clamp(24px, 4vh, 40px); background: var(--ground); }
-
-.cs-kicker { color: var(--muted); font-size: 15px; }
-.cs-name { font: 650 clamp(38px, 4.6vw, 66px)/1 var(--display); letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; margin-top: 8px; }
-
-.cs-steps { display: grid; margin-top: 26px; }
-.cs-step p { font-size: 18px; line-height: 1.55; max-width: 40ch; }
-.cs-step h4 { margin: 18px 0 4px; font: 600 14px/1.3 var(--body); color: var(--muted); }
-.cs-step:first-child h4 { margin-top: 0; }
-.is-pinned .cs-step {
-  grid-area: 1 / 1; opacity: 0; transform: translateY(16px); pointer-events: none;
-  transition: opacity .45s ease, transform .6s cubic-bezier(.16, 1, .3, 1);
+.sc-tab:hover { color: var(--ink); }
+.sc-tab.on { color: var(--accent-ink); }
+.sc-pill {
+  position: absolute; left: 0; top: 0; border-radius: 999px; background: var(--accent); z-index: 0;
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1), width .5s cubic-bezier(.16, 1, .3, 1), height .5s;
 }
-.is-pinned .cs-step.is-on { opacity: 1; transform: none; pointer-events: auto; transition-delay: .08s; }
-.is-pinned .cs-step p { font-size: clamp(20px, 1.7vw, 25px); line-height: 1.42; max-width: 32ch; color: var(--ink); }
+.sc-body { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(28px, 4.5vw, 72px); align-items: start; padding-top: clamp(28px, 4vh, 44px); }
+.sc-text { animation: sc-in .55s cubic-bezier(.16, 1, .3, 1); }
+@keyframes sc-in { from { opacity: 0; transform: translateY(12px); } }
+.sc-kicker { color: var(--muted); font-size: 15px; }
+.sc-name { font: 650 clamp(34px, 3.8vw, 54px)/1 var(--display); letter-spacing: -0.035em; font-variation-settings: 'wdth' 90; margin-top: 6px; }
+.sc-steps { margin: 22px 0 0; display: grid; gap: 14px; }
+.sc-steps dt { font: 600 13px/1.3 var(--body); color: var(--muted); }
+.sc-steps dd { margin: 3px 0 0; font-size: 16.5px; line-height: 1.55; max-width: 46ch; }
+.sc-text .tags { margin-top: 22px; }
+.sc-text .entry-links { margin-top: 16px; }
+.sc-demo { display: grid; gap: 12px; min-width: 0; position: sticky; top: 84px; }
+.sc-slot { position: absolute; inset: 0; }
+.sc-slot.on { animation: sc-fade .45s ease-out; }
+@keyframes sc-fade { from { opacity: 0; } }
+.cs-stage-platform .sc-slot { inset: 22px 0 0 22px; }
 
-.cs-nav { list-style: none; padding: 0; margin: 30px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 460px; }
-.cs-nav button { width: 100%; display: grid; gap: 9px; padding: 0; border: 0; background: none; text-align: left; color: var(--muted); font: 600 13px/1.3 var(--body); cursor: pointer; transition: color .2s; }
-.cs-nav button:hover, .cs-nav button.on { color: var(--ink); }
-.cs-bar { display: block; height: 2px; background: var(--line); overflow: hidden; border-radius: 2px; }
-.cs-bar i { display: block; height: 100%; background: var(--ink); transform-origin: left; transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.cs-stage { position: relative; aspect-ratio: 4 / 3.15; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -32px rgba(20, 25, 40, .45); }
+.cs-hint { color: var(--muted); font-size: 14px; animation: sc-in .5s cubic-bezier(.16, 1, .3, 1); }
 
-.cs .tags { margin-top: 26px; }
-.cs .entry-links { margin-top: 16px; }
-
-.cs-demo { display: grid; gap: 12px; min-width: 0; }
-.cs-stage { position: relative; aspect-ratio: 4 / 3.15; max-height: calc(100svh - 200px); width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -32px rgba(20, 25, 40, .45); }
-.cs-hint { color: var(--muted); font-size: 14px; }
-.cs-loading { position: absolute; inset: 0; }
-
-.cs-stage-platform { background: linear-gradient(160deg, #e9e7f2, #d9d6e6); padding: 22px 0 0 22px; }
+.cs-stage-platform { background: linear-gradient(160deg, #e9e7f2, #d9d6e6); }
 .cs-stage-gokarya { background: #060509; }
 .cs-stage-blocksmash {
   background:
@@ -183,15 +179,21 @@
 .gd-picks button:hover { border-color: #c4b5fd; }
 .gd-picks button.on { background: #8b5cf6; border-color: #8b5cf6; color: #fff; }
 
-/* ---------- Small screens: no pinning, steps stacked, demo below ---------- */
+/* ---------- Small screens: tabs scroll sideways, demo under the text ---------- */
 @media (max-width: 960px) {
-  .cs { grid-template-columns: minmax(0, 1fr); }
-  .cs-stage { max-height: none; }
+  .sc-body { grid-template-columns: minmax(0, 1fr); }
+  .sc-demo { position: static; }
   .cs-stage-blocksmash { aspect-ratio: 4 / 5.2; }
   .cs-stage-whisper, .cs-stage-eidolon { aspect-ratio: 4 / 4; }
 }
+@media (max-width: 640px) {
+  .sc-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); gap: 18px; }
+  .sc-group-label { display: none; }
+  .sc-tab { padding: 9px 12px; font-size: 14px; }
+}
 @media (max-width: 560px) {
-  .cs-stage-platform { padding: 12px 0 0 12px; aspect-ratio: 4 / 4.4; }
+  .cs-stage-platform { aspect-ratio: 4 / 4.4; }
+  .cs-stage-platform .sc-slot { inset: 12px 0 0 12px; }
   .pd { grid-template-columns: minmax(0, 1fr); }
   .pd-side { flex-direction: row; overflow-x: auto; padding: 8px; border-right: 0; border-bottom: 1px solid #e6e3ee; }
   .pd-side b { display: none; }
