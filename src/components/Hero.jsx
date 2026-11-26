@@ -19,11 +19,12 @@ function Form({ k, href, children }) {
   return <a href={href} className="form-word" data-project={k}>{children}</a>;
 }
 
+// About me, from LinkedIn. `count` makes the number tick up when it comes into view.
 const STATS = [
-  { to: 1600, suffix: '+', label: 'commits to GoKarya’s platform' },
-  { to: 61, suffix: '/63', label: 'Whisper cleanup tests passing' },
-  { to: 46, suffix: '', label: 'F1 races in the strategy model' },
-  { from: 99, to: 0, suffix: '', label: 'rigged deals in Block Smash' },
+  { value: 'New York', label: 'AI Engineer intern at GoKarya, on site since September 2026' },
+  { value: '67.8%', count: { to: 67.8, decimals: 1, suffix: '%' }, label: 'average so far in my Computer Science and AI master’s at Bath' },
+  { value: 'A*A*AA', label: 'A levels in Maths, Further Maths, Computer Science and Business' },
+  { value: '2 years', label: 'tutoring GCSE maths, around five years of part-time work' },
 ];
 
 export default function Hero() {
@@ -49,12 +50,12 @@ export default function Hero() {
 
     // Counters run once the strip scrolls into view.
     gsap.utils.toArray('.stat-num').forEach((el) => {
-      const from = Number(el.dataset.from), to = Number(el.dataset.to);
-      const obj = { v: from };
+      const to = Number(el.dataset.to), dec = Number(el.dataset.dec || 0), suffix = el.dataset.suffix || '';
+      const obj = { v: 0 };
       gsap.to(obj, {
         v: to, duration: 2, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top bottom', once: true },
-        onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString('en-GB'); },
+        onUpdate: () => { el.textContent = obj.v.toFixed(dec) + suffix; },
       });
     });
 
@@ -161,17 +162,18 @@ export default function Hero() {
             <Magnetic href={links.github} target="_blank" rel="noopener noreferrer" className="button">GitHub</Magnetic>
             <Magnetic href={links.linkedin} target="_blank" rel="noopener noreferrer" className="button">LinkedIn</Magnetic>
           </div>
-          <p className="hero-note">On placement at GoKarya, then back to Bath for the final year of Computer Science and AI.</p>
+          <p className="hero-note">AI Engineer intern at GoKarya in New York, then back to Bath for the final year of my master&apos;s.</p>
         </div>
         <dl className="stats">
           {STATS.map((s) => (
             <div className="stat" key={s.label}>
               <dt>{s.label}</dt>
               <dd>
-                <span className="stat-num" data-from={s.from ?? 0} data-to={s.to}>
-                  {reducedMotion() ? s.to : s.from ?? 0}
-                </span>
-                {s.suffix}
+                {s.count && !reducedMotion() ? (
+                  <span className="stat-num" data-to={s.count.to} data-dec={s.count.decimals} data-suffix={s.count.suffix} aria-label={s.value}>
+                    {(0).toFixed(s.count.decimals) + s.count.suffix}
+                  </span>
+                ) : s.value}
               </dd>
             </div>
           ))}

@@ -15,7 +15,7 @@ export const work = [
     id: 'platform',
     demo: 'platform',
     name: 'Delivery platform',
-    kicker: 'GoKarya, since September 2026',
+    kicker: 'GoKarya, New York, since September 2026',
     steps: steps(
       'The one place GoKarya’s consultants run client work: projects, calendar, meetings and tasks, plus every requirement, decision and risk.',
       'AI drafts the paperwork from calls and emails, but nothing counts until a person approves it, and every fact links back to where it came from.',
