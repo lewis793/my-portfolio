@@ -4,8 +4,8 @@ import Desktop from './Desktop.jsx';
 import { gsap, SplitText, ScrollTrigger, reducedMotion, finePointer, useMagnetic } from '../lib/motion.js';
 import { links } from '../data/content.js';
 
-const BASE = { wght: 650, wdth: 88 };
-const PEAK = { wght: 800, wdth: 100 };
+const BASE = { wght: 600 };
+const PEAK = { wght: 700 };
 const RADIUS = 220;
 
 function Magnetic({ className, children, ...rest }) {
@@ -67,7 +67,7 @@ export default function Hero() {
     return () => split.revert();
   }, { scope: root });
 
-  // Letters near the cursor swell in weight and width (Bricolage's variable axes).
+  // Letters near the cursor swell in weight (Familjen Grotesk's variable weight axis).
   useEffect(() => {
     if (reducedMotion() || !finePointer()) return;
     const host = root.current;
@@ -100,8 +100,7 @@ export default function Hero() {
         if (Math.abs(s.t - (s.applied ?? 0)) < 0.002) return;
         s.applied = s.t;
         const wght = BASE.wght + (PEAK.wght - BASE.wght) * s.t;
-        const wdth = BASE.wdth + (PEAK.wdth - BASE.wdth) * s.t;
-        c.style.fontVariationSettings = `'wght' ${wght.toFixed(1)}, 'wdth' ${wdth.toFixed(1)}`;
+        c.style.fontVariationSettings = `'wght' ${wght.toFixed(1)}`;
       });
     };
     host.addEventListener('pointermove', onMove);

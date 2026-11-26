@@ -21,7 +21,7 @@ Recruiters, engineers and anyone who meets me at GoKarya or Bath. In thirty seco
 The shell avoids violet so it never reads as a GoKarya page. Dark mode follows the system setting.
 
 ## Type
-- **Bricolage Grotesque** (variable, self-hosted via Fontsource) for headings, weight 650, narrowed to `wdth 88` in the hero, tight tracking.
+- **Familjen Grotesk** (variable 400 to 700, self-hosted via Fontsource) for headings and the hero, mostly at 600 with tight tracking. Chosen over Bricolage Grotesque, which design guides now list as an AI-default face alongside Fraunces, Newsreader, Instrument Serif and Space Grotesk.
 - **Public Sans** (variable) for body text and UI. 17px body, 16px on phones.
 - No monospace labels, no all-caps eyebrows, no italics for emphasis.
 
@@ -62,3 +62,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Tools section centred | Lewis: didn't like it aligned to the left. Centred, the chips and lines read as a tree down to the projects. |
 | 2026-11-26 | Contact becomes a compact strip: heading and links on one line, form on one row, message box grows as you type | Lewis: the contact section was too big. |
 | 2026-11-26 | Footer name shrunk from wall-sized to a 22px heading on one row with the footer notes | Lewis: the name was too big. |
+| 2026-11-26 | Display font Bricolage Grotesque replaced by Familjen Grotesk | Lewis didn't like the hero font. Research (Visio Design, Oct 2026) lists Bricolage among the faces AI tools default to; Lewis picked Familjen from a side-by-side of recommended alternatives. The hero letters now swell by weight only (600 to 700). |
