@@ -44,7 +44,8 @@ export default function Showcase({ groups }) {
   useLayoutEffect(() => {
     const measure = () => {
       const el = tabsRef.current?.querySelector(`[data-id="${current}"]`);
-      if (el) setPill({ x: el.offsetLeft, y: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight });
+      const box = tabsRef.current;
+      if (el && box) setPill({ x: el.offsetLeft, y: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight, W: box.scrollWidth, H: box.offsetHeight });
     };
     measure();
     window.addEventListener('resize', measure);
@@ -65,7 +66,7 @@ export default function Showcase({ groups }) {
   return (
     <div className="sc" ref={root}>
       <div className="sc-tabs" ref={tabsRef} role="tablist" aria-label="Projects" onKeyDown={onKeyDown}>
-        <span className="sc-pill" style={pill ? { transform: `translate(${pill.x}px, ${pill.y}px)`, width: pill.w, height: pill.h } : { opacity: 0 }} />
+        <span className="sc-pill" style={pill ? { width: pill.W, clipPath: `inset(${pill.y}px ${pill.W - pill.x - pill.w}px ${pill.H - pill.y - pill.h}px ${pill.x}px round 999px)` } : { opacity: 0 }} />
         {groups.map((g) => (
           <div className="sc-group" key={g.label} role="presentation">
             <span className="sc-group-label" aria-hidden="true">{g.label}</span>
