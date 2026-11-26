@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import BlockField from './BlockField.jsx';
+import ProjectField from './ProjectField.jsx';
 import { gsap, SplitText, ScrollTrigger, reducedMotion, finePointer, useMagnetic } from '../lib/motion.js';
 import { links } from '../data/content.js';
 
@@ -13,8 +13,25 @@ function Magnetic({ className, children, ...rest }) {
   return <a ref={ref} className={className} {...rest}>{children}</a>;
 }
 
+// A project's words in the headline: hovering or focusing one draws that project in the field.
+function Form({ k, href, children }) {
+  const send = (key) => window.dispatchEvent(new CustomEvent('heroform', { detail: key }));
+  return (
+    <a
+      href={href}
+      className="form-word"
+      onPointerEnter={() => send(k)}
+      onPointerLeave={() => send(null)}
+      onFocus={() => send(k)}
+      onBlur={() => send(null)}
+    >
+      {children}
+    </a>
+  );
+}
+
 const STATS = [
-  { to: 1600, suffix: '+', label: 'commits to GoKarya’s platform in two months' },
+  { to: 1600, suffix: '+', label: 'commits to GoKarya’s platform' },
   { to: 61, suffix: '/63', label: 'Whisper cleanup tests passing' },
   { to: 46, suffix: '', label: 'F1 races in the strategy model' },
   { from: 99, to: 0, suffix: '', label: 'rigged deals in Block Smash' },
@@ -38,7 +55,7 @@ export default function Hero() {
     if (still) return () => split.revert();
 
     gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.5 })
-      .from('.hero-copy > *', { y: 24, opacity: 0, duration: 1, stagger: 0.08 })
+      .from('.hero-copy > *, .field', { y: 24, opacity: 0, duration: 1, stagger: 0.08 })
       .from('.stat', { y: 30, opacity: 0, duration: 1, stagger: 0.06 }, '-=0.8');
 
     // Counters run once the strip scrolls into view.
@@ -47,7 +64,7 @@ export default function Hero() {
       const obj = { v: from };
       gsap.to(obj, {
         v: to, duration: 2, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        scrollTrigger: { trigger: el, start: 'top bottom', once: true },
         onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString('en-GB'); },
       });
     });
@@ -113,19 +130,22 @@ export default function Hero() {
 
   return (
     <section className="hero" id="top" ref={root}>
-      <BlockField />
       <div className="hero-inner wrap">
-        <h1 ref={title}>I build AI products, and small, careful software for myself.</h1>
+        <div className="hero-main">
+          <h1 ref={title}>
+            I&apos;m Lewis. I build GoKarya&apos;s <Form k="platform" href="#platform">delivery platform</Form>,
+            a <Form k="blocks" href="#blocksmash">puzzle game</Form>, a <Form k="voice" href="#whisper">dictation app</Form>{' '}
+            and a <Form k="ai" href="#eidolon">private AI</Form>.
+          </h1>
+          <ProjectField />
+        </div>
         <div className="hero-copy">
-          <p className="lede">
-            On a placement year at <a href="#work">GoKarya</a>, building its <a href="#platform">delivery platform</a>.
-            Then back to Bath for the last year of Computer Science and AI.
-          </p>
           <div className="hero-actions">
             <Magnetic href="#contact" className="button button-solid">Get in touch</Magnetic>
             <Magnetic href={links.github} target="_blank" rel="noopener noreferrer" className="button" data-cursor="Open">GitHub</Magnetic>
             <Magnetic href={links.linkedin} target="_blank" rel="noopener noreferrer" className="button" data-cursor="Open">LinkedIn</Magnetic>
           </div>
+          <p className="hero-note">On placement at GoKarya, then back to Bath for the final year of Computer Science and AI.</p>
         </div>
         <dl className="stats">
           {STATS.map((s) => (
@@ -140,7 +160,6 @@ export default function Hero() {
             </div>
           ))}
         </dl>
-        <p className="hero-hint" aria-hidden="true">Click anywhere on the blocks</p>
       </div>
     </section>
   );

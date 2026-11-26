@@ -85,16 +85,31 @@ a:hover { text-decoration-color: currentColor; }
 /* ---------- Hero ---------- */
 .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-top: clamp(40px, 8vh, 96px); padding-bottom: clamp(40px, 8vh, 96px); }
 .hero h1 {
-  font: 650 clamp(40px, 7.2vw, 92px)/0.98 var(--display);
+  font: 650 clamp(34px, 4.6vw, 66px)/1.04 var(--display);
   font-variation-settings: 'wdth' 88;
-  letter-spacing: -0.035em;
-  max-width: 13ch;
-  text-wrap: balance;
+  letter-spacing: -0.03em;
 }
-.hero-copy { margin-top: clamp(28px, 5vh, 48px); max-width: 60ch; margin-left: clamp(0px, 22vw, 300px); display: grid; gap: 16px; color: var(--muted); }
-.hero-copy .lede { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; color: var(--ink); }
-.hero-copy p a { color: var(--ink); font-weight: 550; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.hero-main { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: center; }
+.hero-copy { margin-top: clamp(28px, 5vh, 48px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-note { color: var(--muted); font-size: 15px; max-width: 42ch; }
+
+/* The project words in the headline: underlined, and they light up while their project is drawn. */
+.form-word { text-decoration: none; transition: color .25s; }
+.form-word .kt-char { background: linear-gradient(color-mix(in srgb, currentColor 35%, transparent), color-mix(in srgb, currentColor 35%, transparent)) 0 93% / 100% 0.045em no-repeat; transition: color .25s; }
+.form-word:hover .kt-char, .form-word:focus-visible .kt-char { background-image: linear-gradient(currentColor, currentColor); }
+.form-word:hover, .form-word:focus-visible { color: var(--accent); }
+
+/* Project field beside the headline */
+.field { margin: 0; display: grid; gap: 10px; }
+.field canvas { display: block; width: 100%; aspect-ratio: 1; }
+.field figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; }
+.field-caption { color: var(--muted); text-decoration: none; animation: caption-in .5s ease-out both; }
+.field-caption:hover { color: var(--ink); }
+@keyframes caption-in { from { opacity: 0; transform: translateY(4px); } }
+.field-dots { display: flex; gap: 6px; }
+.field-dots i { width: 6px; height: 6px; border-radius: 2px; background: var(--line); transition: background-color .3s, width .3s; }
+.field-dots i.on { width: 18px; background: var(--ink); }
 
 /* ---------- Buttons ---------- */
 .button {
@@ -308,7 +323,8 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
   .uni-short, .uni-stack { grid-column: 1; }
   .uni-arrow { grid-column: 2; grid-row: 1; }
   .contact { grid-template-columns: minmax(0, 1fr); }
-  .hero-copy { margin-left: 0; }
+  .hero-main { grid-template-columns: minmax(0, 1fr); }
+  .field { max-width: 380px; width: 100%; justify-self: center; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }

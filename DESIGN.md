@@ -35,7 +35,7 @@ The shell avoids violet so it never reads as a GoKarya page. Dark mode follows t
 The site is meant to show off front-end craft, so motion is a feature, not a garnish. It lives in `src/lib/motion.js` (GSAP, ScrollTrigger, SplitText, Lenis) and `src/motion.css`.
 
 - **Scroll:** Lenis smooth scroll drives ScrollTrigger; in-page links go through `scrollToTarget`. A progress bar runs along the top.
-- **Hero:** a canvas block field (`BlockField.jsx`) lights up in Block Smash colours near the cursor, and a click sends a shockwave. The headline splits into letters that rise in, then swell in `wght`/`wdth` near the cursor.
+- **Hero:** one statement, no subtitle: "I'm Lewis. I build GoKarya's delivery platform, a puzzle game, a dictation app and a private AI." Beside it a particle field (`ProjectField.jsx`) draws each project in turn in its own colours; hovering or focusing a project's words snaps the field to that project. Letters rise in, then swell in `wght`/`wdth` near the cursor.
 - **Plates act out their product while on screen** (`Plates.jsx`): Block Smash clears a row, Whisper types as you'd dictate, Eidolon streams a reply, the GoKarya platform approves its drafts, and the GoKarya particles morph between the three industries. Plates tilt with a glare highlight and wipe in with a clip-path.
 - **Chrome:** custom cursor with labels (`data-cursor="Play"`), magnetic buttons, a gliding nav pill, a theme toggle with a View Transition circle, a Ctrl/⌘K command palette, and film grain.
 - **Lower page:** headings reveal line by line, counters count up, the toolkit marquees speed up and lean with scroll speed, and a sent message bursts into blocks.
@@ -52,3 +52,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Gestures left off the site | Lewis's call. |
 | 2026-11-26 | Full motion layer added (GSAP + Lenis, living plates, block-field hero, kinetic type, palette, cursor) | Lewis: the site should show off web design. Every effect is tied to the content (the blocks are Block Smash's, the plates show what each product does). |
 | 2026-11-26 | Less text: one-sentence summaries, tag chips, details behind "How it's built"; Work two-up, Projects bento, University as rows | Lewis: too much text and every section looked the same. Facts are kept, just not shown by default. |
+| 2026-11-26 | Hero becomes one statement beside a particle field that draws each project; block field removed | Lewis: the headline-then-subtitle layout didn't work, and the blocks only related to Block Smash. |
