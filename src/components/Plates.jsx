@@ -315,7 +315,7 @@ function GoKarya({ active }) {
 /* ------------------------------------------------------------------ Frame */
 const PLATES = { blocksmash: BlockSmash, whisper: Whisper, eidolon: Eidolon, platform: Platform, gokarya: GoKarya };
 
-export default function Plate({ kind, href, cursor }) {
+export default function Plate({ kind, href }) {
   const P = PLATES[kind];
   const [viewRef, active] = useInView({ threshold: 0.3 });
   const tiltRef = useTilt(6);
@@ -338,7 +338,7 @@ export default function Plate({ kind, href, cursor }) {
       className={`plate plate-${kind}${href ? ' is-link' : ''}`}
       aria-hidden="true"
       onClick={open}
-      data-cursor={href ? cursor : undefined}
+     
     >
       <P active={active} />
       <span className="glare" />

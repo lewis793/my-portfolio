@@ -37,9 +37,9 @@ The site is meant to show off front-end craft, so motion is a feature, not a gar
 - **Scroll:** Lenis smooth scroll drives ScrollTrigger; in-page links go through `scrollToTarget`. A progress bar runs along the top.
 - **Hero:** one statement, no subtitle, beside a mini desktop (`Desktop.jsx`) with a menu bar, a live UK clock and an icon per project. Icons open that project's live drawing in a window that grows out of the icon; windows drag by the title bar, raise on click and close. Three open one after another on load. Hovering or focusing a project's words in the statement opens or raises its window (delegated listener in `Hero.jsx`, since SplitText rebuilds the headline's DOM). On phones the icons become a dock above the windows.
 - **Plates act out their product while on screen** (`Plates.jsx`): Block Smash clears a row, Whisper types as you'd dictate, Eidolon streams a reply, the GoKarya platform approves its drafts, and the GoKarya particles morph between the three industries. Plates tilt with a glare highlight and wipe in with a clip-path.
-- **Chrome:** custom cursor with labels (`data-cursor="Play"`), magnetic buttons, a gliding nav pill, a theme toggle with a View Transition circle, a Ctrl/⌘K command palette, and film grain.
+- **Chrome:** magnetic buttons, a gliding nav pill, a theme toggle with a View Transition circle, a Ctrl/⌘K command palette, and film grain.
 - **Lower page:** headings reveal line by line, counters count up, the toolkit marquees speed up and lean with scroll speed, and a sent message bursts into blocks.
-- **Reduced motion:** no smooth scroll, no cursor, no splits or loops; plates show their finished state and counters show final values.
+- **Reduced motion:** no smooth scroll, no splits or loops; plates show their finished state and counters show final values.
 
 ## Voice
 Plain, first person, specific. Say what a thing does and what is true about it (numbers from the repos), not adjectives. No em dashes.
@@ -54,3 +54,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Less text: one-sentence summaries, tag chips, details behind "How it's built"; Work two-up, Projects bento, University as rows | Lewis: too much text and every section looked the same. Facts are kept, just not shown by default. |
 | 2026-11-26 | Hero becomes one statement beside a particle field that draws each project; block field removed | Lewis: the headline-then-subtitle layout didn't work, and the blocks only related to Block Smash. |
 | 2026-11-26 | Mini desktop replaces the particle field | Lewis: the particles were too close to the gokarya.com hero; he wanted something of his own. The desktop reuses his projects' own drawings. |
+| 2026-11-26 | Custom cursor removed; native pointer everywhere | Lewis: the big labelled circle covered what you were pointing at. |

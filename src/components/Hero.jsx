@@ -159,8 +159,8 @@ export default function Hero() {
         <div className="hero-copy">
           <div className="hero-actions">
             <Magnetic href="#contact" className="button button-solid">Get in touch</Magnetic>
-            <Magnetic href={links.github} target="_blank" rel="noopener noreferrer" className="button" data-cursor="Open">GitHub</Magnetic>
-            <Magnetic href={links.linkedin} target="_blank" rel="noopener noreferrer" className="button" data-cursor="Open">LinkedIn</Magnetic>
+            <Magnetic href={links.github} target="_blank" rel="noopener noreferrer" className="button">GitHub</Magnetic>
+            <Magnetic href={links.linkedin} target="_blank" rel="noopener noreferrer" className="button">LinkedIn</Magnetic>
           </div>
           <p className="hero-note">On placement at GoKarya, then back to Bath for the final year of Computer Science and AI.</p>
         </div>

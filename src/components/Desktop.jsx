@@ -179,14 +179,14 @@ export default function Desktop() {
       <ul className="dt-icons">
         {APPS.map((a) => (
           <li key={a.key}>
-            <button type="button" ref={(el) => { iconRefs.current[a.key] = el; }} onClick={() => open(a.key)} data-cursor="Open" aria-label={`Open ${a.title}`}>
+            <button type="button" ref={(el) => { iconRefs.current[a.key] = el; }} onClick={() => open(a.key)} aria-label={`Open ${a.title}`}>
               <Icon kind={a.key} />
               <span>{a.title}</span>
             </button>
           </li>
         ))}
         <li>
-          <button type="button" onClick={() => scrollToTarget('#contact')} data-cursor="Write" aria-label="Go to the contact form">
+          <button type="button" onClick={() => scrollToTarget('#contact')} aria-label="Go to the contact form">
             <Icon kind="mail" />
             <span>Say hello</span>
           </button>
@@ -205,7 +205,7 @@ export default function Desktop() {
             aria-label={a.title}
             onPointerDown={() => topKey !== a.key && raise(a.key)}
           >
-            <header className="dt-title" onPointerDown={startDrag(a.key)} data-cursor="Drag">
+            <header className="dt-title" onPointerDown={startDrag(a.key)}>
               <span>{a.title}</span>
               <button type="button" className="dt-close" onClick={() => close(a.key)} aria-label={`Close ${a.title}`}>
                 <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>

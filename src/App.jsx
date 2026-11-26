@@ -3,7 +3,6 @@ import { useGSAP } from '@gsap/react';
 import Hero from './components/Hero.jsx';
 import Plate from './components/Plates.jsx';
 import Contact from './components/Contact.jsx';
-import Cursor from './components/Cursor.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
 import Marquee from './components/Marquee.jsx';
@@ -61,9 +60,9 @@ function Nav({ active }) {
   );
 }
 
-function ExternalLink({ href, children, className = '', cursor }) {
+function ExternalLink({ href, children, className = '' }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={className} data-cursor={cursor}>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
       {children}
     </a>
   );
@@ -72,7 +71,7 @@ function ExternalLink({ href, children, className = '', cursor }) {
 function MagneticLink({ href, children }) {
   const ref = useMagnetic(0.3);
   return (
-    <a ref={ref} href={href} target="_blank" rel="noopener noreferrer" className="button" data-cursor="Open">
+    <a ref={ref} href={href} target="_blank" rel="noopener noreferrer" className="button">
       {children}
     </a>
   );
@@ -104,10 +103,9 @@ function More({ item }) {
 
 function Card({ item, variant }) {
   const first = item.links[0];
-  const cursor = !first ? undefined : first.label === 'Play it' ? 'Play' : first.label === 'Code' ? 'Code' : 'Visit';
   return (
     <article className={`card card-${variant}`} id={item.id}>
-      <Plate kind={item.plate} href={first?.href} cursor={cursor} />
+      <Plate kind={item.plate} href={first?.href} />
       <div className="card-body">
         <div className="card-head">
           <h3>{item.name}</h3>
@@ -185,15 +183,14 @@ export default function App() {
       <a className="skip" href="#main">Skip to content</a>
       <div className="progress" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
-      <Cursor />
       <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} />
 
       <header className="topbar">
         <div className="wrap topbar-inner">
-          <a href="#top" className="wordmark" data-cursor="Top">Lewis Grice</a>
+          <a href="#top" className="wordmark">Lewis Grice</a>
           <Nav active={active} />
           <div className="topbar-tools">
-            <button type="button" className="kbd-button" onClick={() => setPaletteOpen(true)} aria-label="Open command menu" data-cursor="Menu">
+            <button type="button" className="kbd-button" onClick={() => setPaletteOpen(true)} aria-label="Open command menu">
               <span>{kbd}</span>
             </button>
             <ThemeToggle />
@@ -232,7 +229,7 @@ export default function App() {
           <ul className="uni-list">
             {university.map((u) => (
               <li key={u.id}>
-                <a href={u.href} target="_blank" rel="noopener noreferrer" data-cursor="Code">
+                <a href={u.href} target="_blank" rel="noopener noreferrer">
                   <span className="uni-name">{u.name}</span>
                   <span className="uni-short">{u.short}</span>
                   <span className="uni-stack">{u.stack.join(', ')}</span>
@@ -265,8 +262,8 @@ export default function App() {
             <header className="section-head">
               <h2 id="contact-h">Get in touch</h2>
               <p>
-                Send a message and I&apos;ll reply by email. I&apos;m also on <ExternalLink href={links.linkedin} cursor="Open">LinkedIn</ExternalLink> and{' '}
-                <ExternalLink href={links.github} cursor="Open">GitHub</ExternalLink>.
+                Send a message and I&apos;ll reply by email. I&apos;m also on <ExternalLink href={links.linkedin}>LinkedIn</ExternalLink> and{' '}
+                <ExternalLink href={links.github}>GitHub</ExternalLink>.
               </p>
             </header>
             <Contact />
@@ -281,7 +278,7 @@ export default function App() {
             <span>&copy; {new Date().getFullYear()} Lewis Grice</span>
             <span>
               Press <button type="button" className="link-button" onClick={() => setPaletteOpen(true)}>{kbd}</button> to jump anywhere.
-              Older university code is on <ExternalLink href={links.githubUni} cursor="Open">my university GitHub</ExternalLink>.
+              Older university code is on <ExternalLink href={links.githubUni}>my university GitHub</ExternalLink>.
             </span>
           </div>
         </div>

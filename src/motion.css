@@ -35,26 +35,6 @@
 
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 
-/* ---------- Cursor ---------- */
-.has-cursor, .has-cursor a, .has-cursor button, .has-cursor [data-cursor] { cursor: none; }
-.has-cursor input, .has-cursor textarea { cursor: text; }
-.cursor { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
-.cursor-dot, .cursor-ring { position: fixed; left: 0; top: 0; border-radius: 50%; }
-.cursor-dot { width: 6px; height: 6px; background: var(--ink); transition: opacity .2s; }
-.cursor-ring {
-  width: 34px; height: 34px; border: 1.5px solid var(--ink); display: grid; place-items: center;
-  transition: width .35s cubic-bezier(.65, 0, .2, 1), height .35s cubic-bezier(.65, 0, .2, 1), background-color .3s, border-color .3s, opacity .2s;
-}
-.cursor-ring span { font: 650 13px/1 var(--body); color: var(--accent-ink); opacity: 0; transition: opacity .2s; white-space: nowrap; }
-.cursor-ring.is-down { opacity: .6; }
-.cursor.is-link .cursor-ring { width: 56px; height: 56px; background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: var(--accent); }
-.cursor.is-link .cursor-dot { opacity: 0; }
-.cursor.is-label .cursor-ring { width: 84px; height: 84px; background: var(--accent); border-color: var(--accent); }
-.cursor.is-label .cursor-ring span { opacity: 1; }
-.cursor.is-label .cursor-dot { opacity: 0; }
-.cursor.is-text .cursor-ring { width: 4px; height: 30px; border-radius: 2px; background: var(--accent); border-color: var(--accent); }
-.cursor.is-text .cursor-dot, .cursor.is-hidden .cursor-dot, .cursor.is-hidden .cursor-ring { opacity: 0; }
-
 /* ---------- Hero ---------- */
 .hero-inner { position: relative; }
 .hero h1 { visibility: hidden; }

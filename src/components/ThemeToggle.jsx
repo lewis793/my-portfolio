@@ -14,7 +14,7 @@ export default function ThemeToggle() {
   };
   const dark = theme === 'dark';
   return (
-    <button type="button" className="icon-button theme-toggle" onClick={onClick} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'} data-cursor={dark ? 'Light' : 'Dark'}>
+    <button type="button" className="icon-button theme-toggle" onClick={onClick} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
         <mask id="moon"><rect width="24" height="24" fill="#fff" /><circle className="tt-bite" cx={dark ? 17 : 30} cy={dark ? 7 : -6} r="6" fill="#000" /></mask>
         <circle className="tt-core" cx="12" cy="12" r={dark ? 8 : 5} mask="url(#moon)" fill="currentColor" />
