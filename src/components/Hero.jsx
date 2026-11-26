@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import ProjectField from './ProjectField.jsx';
+import Desktop from './Desktop.jsx';
 import { gsap, SplitText, ScrollTrigger, reducedMotion, finePointer, useMagnetic } from '../lib/motion.js';
 import { links } from '../data/content.js';
 
@@ -13,21 +13,10 @@ function Magnetic({ className, children, ...rest }) {
   return <a ref={ref} className={className} {...rest}>{children}</a>;
 }
 
-// A project's words in the headline: hovering or focusing one draws that project in the field.
+// A project's words in the headline. SplitText rebuilds the headline's DOM, so React handlers on
+// these links would be lost; Hero listens for hover and focus on the headline instead.
 function Form({ k, href, children }) {
-  const send = (key) => window.dispatchEvent(new CustomEvent('heroform', { detail: key }));
-  return (
-    <a
-      href={href}
-      className="form-word"
-      onPointerEnter={() => send(k)}
-      onPointerLeave={() => send(null)}
-      onFocus={() => send(k)}
-      onBlur={() => send(null)}
-    >
-      {children}
-    </a>
-  );
+  return <a href={href} className="form-word" data-project={k}>{children}</a>;
 }
 
 const STATS = [
@@ -55,7 +44,7 @@ export default function Hero() {
     if (still) return () => split.revert();
 
     gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.5 })
-      .from('.hero-copy > *, .field', { y: 24, opacity: 0, duration: 1, stagger: 0.08 })
+      .from('.hero-copy > *, .desktop', { y: 24, opacity: 0, duration: 1, stagger: 0.08 })
       .from('.stat', { y: 30, opacity: 0, duration: 1, stagger: 0.06 }, '-=0.8');
 
     // Counters run once the strip scrolls into view.
@@ -128,16 +117,44 @@ export default function Hero() {
 
   useEffect(() => () => ScrollTrigger.refresh(), []);
 
+  // Hovering or focusing a project's words opens its window on the desktop.
+  useEffect(() => {
+    const h1 = title.current;
+    let last = null;
+    const send = (e) => {
+      const key = e.target.closest?.('[data-project]')?.dataset.project ?? null;
+      if (key === last) return;
+      last = key;
+      // SplitText can cut one link into several pieces, so light up every piece of the phrase.
+      h1.querySelectorAll('[data-project]').forEach((el) => el.classList.toggle('is-on', el.dataset.project === key));
+      if (key) window.dispatchEvent(new CustomEvent('heroproject', { detail: key }));
+    };
+    const reset = () => {
+      last = null;
+      h1.querySelectorAll('.is-on').forEach((el) => el.classList.remove('is-on'));
+    };
+    h1.addEventListener('pointerover', send);
+    h1.addEventListener('focusin', send);
+    h1.addEventListener('focusout', reset);
+    h1.addEventListener('pointerleave', reset);
+    return () => {
+      h1.removeEventListener('pointerover', send);
+      h1.removeEventListener('focusin', send);
+      h1.removeEventListener('focusout', reset);
+      h1.removeEventListener('pointerleave', reset);
+    };
+  }, []);
+
   return (
     <section className="hero" id="top" ref={root}>
       <div className="hero-inner wrap">
         <div className="hero-main">
           <h1 ref={title}>
             I&apos;m Lewis. I build GoKarya&apos;s <Form k="platform" href="#platform">delivery platform</Form>,
-            a <Form k="blocks" href="#blocksmash">puzzle game</Form>, a <Form k="voice" href="#whisper">dictation app</Form>{' '}
-            and a <Form k="ai" href="#eidolon">private AI</Form>.
+            a <Form k="blocksmash" href="#blocksmash">puzzle game</Form>, a <Form k="whisper" href="#whisper">dictation app</Form>{' '}
+            and a <span className="nobr"><Form k="eidolon" href="#eidolon">private AI</Form>.</span>
           </h1>
-          <ProjectField />
+          <Desktop />
         </div>
         <div className="hero-copy">
           <div className="hero-actions">

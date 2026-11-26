@@ -345,3 +345,14 @@ export default function Plate({ kind, href, cursor }) {
     </div>
   );
 }
+
+// The bare drawing, for use inside the hero desktop's windows (no tilt, wipe or link).
+export function PlateBody({ kind, active }) {
+  const P = PLATES[kind];
+  if (!P) return null;
+  return (
+    <div className={`plate plate-${kind}`} aria-hidden="true">
+      <P active={active} />
+    </div>
+  );
+}
