@@ -2,7 +2,7 @@
 // out what the real product does. They are decorative (aria-hidden): the text beside them carries
 // the meaning, and the real links sit under the text.
 import { useEffect, useRef, useState } from 'react';
-import { useInView, useLoop, useTilt, reducedMotion, gsap } from '../lib/motion.js';
+import { useLoop, reducedMotion } from '../lib/motion.js';
 
 const BRICK = ['#e3262f', '#ffcd03', '#2bb34a', '#1e6fd9', '#ff7a1a', '#9b5de5', '#00b2c8', '#f45ba1'];
 
@@ -232,9 +232,15 @@ function formations(w, h) {
   ];
 }
 
-function GoKarya({ active }) {
+function GoKarya({ active, forced = null }) {
   const canvasRef = useRef(null);
   const [label, setLabel] = useState('The company brain');
+  // `forced` pins one formation (the case study's industry buttons); null lets it cycle.
+  const forcedRef = useRef(forced);
+  useEffect(() => {
+    forcedRef.current = forced;
+    if (forced != null) setLabel(['The company brain', 'Data centers', 'Real estate', 'Life sciences'][forced]);
+  }, [forced]);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -267,7 +273,7 @@ function GoKarya({ active }) {
     }
     const step = () => {
       if (!forms.length) { raf = requestAnimationFrame(step); return; }
-      const pts = forms[current].pts;
+      const pts = forms[forcedRef.current ?? current].pts;
       parts.forEach((p, i) => {
         const [tx, ty] = pts[i];
         p.vx += (tx - p.x) * 0.012;
@@ -291,6 +297,7 @@ function GoKarya({ active }) {
       host.addEventListener('pointerleave', leave);
       raf = requestAnimationFrame(step);
       timer = setInterval(() => {
+        if (forcedRef.current != null) return;
         current = (current + 1) % forms.length;
         setLabel(forms[current].name);
       }, 2800);
@@ -315,44 +322,13 @@ function GoKarya({ active }) {
 /* ------------------------------------------------------------------ Frame */
 const PLATES = { blocksmash: BlockSmash, whisper: Whisper, eidolon: Eidolon, platform: Platform, gokarya: GoKarya };
 
-export default function Plate({ kind, href }) {
-  const P = PLATES[kind];
-  const [viewRef, active] = useInView({ threshold: 0.3 });
-  const tiltRef = useTilt(6);
-  const setRefs = (el) => { viewRef.current = el; tiltRef.current = el; };
-  const open = () => href && window.open(href, '_blank', 'noopener');
-
-  useEffect(() => {
-    const el = viewRef.current;
-    if (!el || reducedMotion()) return;
-    gsap.fromTo(el, { clipPath: 'inset(12% 12% 12% 12% round 28px)', scale: 1.04 }, {
-      clipPath: 'inset(0% 0% 0% 0% round 14px)', scale: 1, duration: 1.4, ease: 'expo.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    });
-  }, [viewRef]);
-
-  if (!P) return null;
-  return (
-    <div
-      ref={setRefs}
-      className={`plate plate-${kind}${href ? ' is-link' : ''}`}
-      aria-hidden="true"
-      onClick={open}
-     
-    >
-      <P active={active} />
-      <span className="glare" />
-    </div>
-  );
-}
-
-// The bare drawing, for use inside the hero desktop's windows (no tilt, wipe or link).
-export function PlateBody({ kind, active }) {
+// The bare drawing, used in the hero desktop's windows and the gokarya.com case study.
+export function PlateBody({ kind, active, ...rest }) {
   const P = PLATES[kind];
   if (!P) return null;
   return (
     <div className={`plate plate-${kind}`} aria-hidden="true">
-      <P active={active} />
+      <P active={active} {...rest} />
     </div>
   );
 }

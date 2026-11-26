@@ -1,15 +1,16 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import Hero from './components/Hero.jsx';
-import Plate from './components/Plates.jsx';
+import CaseStudy from './components/CaseStudy.jsx';
 import Contact from './components/Contact.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
 import Marquee from './components/Marquee.jsx';
-import { gsap, SplitText, ScrollTrigger, startSmoothScroll, scrollToTarget, reducedMotion, useMagnetic } from './lib/motion.js';
+import { gsap, SplitText, startSmoothScroll, scrollToTarget, reducedMotion } from './lib/motion.js';
 import { links, work, projects, university, toolkit } from './data/content.js';
 import './App.css';
 import './motion.css';
+import './casestudy.css';
 
 const NAV = [
   { id: 'work', label: 'Work' },
@@ -68,65 +69,6 @@ function ExternalLink({ href, children, className = '' }) {
   );
 }
 
-function MagneticLink({ href, children }) {
-  const ref = useMagnetic(0.3);
-  return (
-    <a ref={ref} href={href} target="_blank" rel="noopener noreferrer" className="button">
-      {children}
-    </a>
-  );
-}
-
-function More({ item }) {
-  const [open, setOpen] = useState(false);
-  const id = `more-${item.id}`;
-  const toggle = () => {
-    setOpen((o) => !o);
-    setTimeout(() => ScrollTrigger.refresh(), 520);
-  };
-  return (
-    <div className={`more${open ? ' is-open' : ''}`}>
-      <button type="button" className="more-toggle" aria-expanded={open} aria-controls={id} onClick={toggle}>
-        How it&apos;s built
-        <span className="more-icon" aria-hidden="true" />
-      </button>
-      <div className="more-panel" id={id} role="region" aria-label={`How ${item.name} is built`}>
-        <div>
-          <ul className="entry-detail">
-            {item.detail.map((d) => <li key={d}>{d}</li>)}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Card({ item, variant }) {
-  const first = item.links[0];
-  return (
-    <article className={`card card-${variant}`} id={item.id}>
-      <Plate kind={item.plate} href={first?.href} />
-      <div className="card-body">
-        <div className="card-head">
-          <h3>{item.name}</h3>
-          {item.role && <span className="card-role">{item.role}</span>}
-        </div>
-        <p className="card-short">{item.short}</p>
-        <ul className="tags" aria-label="Built with">
-          {item.stack.map((t) => <li key={t}>{t}</li>)}
-        </ul>
-        <div className="card-foot">
-          <More item={item} />
-          <div className="entry-links">
-            {item.links.map((l) => <MagneticLink key={l.href} href={l.href}>{l.label}</MagneticLink>)}
-            {item.note && <span className="entry-note">{item.note}</span>}
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
 export default function App() {
   const active = useActiveSection();
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -168,7 +110,7 @@ export default function App() {
     gsap.utils.toArray('.section-head p, .reveal').forEach((el) => {
       gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
     });
-    gsap.utils.toArray('.card, .uni-list li, .contact .form').forEach((el, i) => {
+    gsap.utils.toArray('.uni-list li, .contact .form').forEach((el, i) => {
       gsap.from(el, { y: 70, opacity: 0, duration: 1.2, ease: 'expo.out', delay: (i % 3) * 0.08, scrollTrigger: { trigger: el, start: 'top 90%' } });
     });
     // University rules draw across.
@@ -201,24 +143,18 @@ export default function App() {
       <main id="main">
         <Hero />
 
-        <section className="section wrap" id="work" aria-labelledby="work-h">
+        <section className="section wrap cs-section" id="work" aria-labelledby="work-h">
           <header className="section-head">
             <h2 id="work-h">Work at GoKarya</h2>
-            <p>On placement I build GoKarya&apos;s product and its website.</p>
           </header>
-          <div className="work-grid">
-            {work.map((item) => <Card key={item.id} item={item} variant="work" />)}
-          </div>
+          {work.map((item) => <CaseStudy key={item.id} item={item} />)}
         </section>
 
-        <section className="section wrap" id="projects" aria-labelledby="projects-h">
+        <section className="section wrap cs-section" id="projects" aria-labelledby="projects-h">
           <header className="section-head">
             <h2 id="projects-h">Projects</h2>
-            <p>Built in my own time, and all open source.</p>
           </header>
-          <div className="bento">
-            {projects.map((item, i) => <Card key={item.id} item={item} variant={i === 0 ? 'feature' : 'side'} />)}
-          </div>
+          {projects.map((item) => <CaseStudy key={item.id} item={item} />)}
         </section>
 
         <section className="section wrap" id="university" aria-labelledby="uni-h">

@@ -6,37 +6,37 @@ export const links = {
   linkedin: 'https://www.linkedin.com/in/lewis-grice',
 };
 
+// Each project is a case study: three steps that change as you scroll, beside an interactive demo.
+const STEPS = ['What it is', 'The hard part', 'Where it’s at'];
+const steps = (...texts) => texts.map((text, i) => ({ label: STEPS[i], text }));
+
 export const work = [
   {
     id: 'platform',
-    short: 'The one place GoKarya’s consultants run client work: projects, calendar, meetings and tasks, with AI agents that draft the paperwork and people who approve it.',
-    plate: 'platform',
-    name: 'GoKarya’s delivery platform',
-    role: 'Built from the first commit, September 2026',
-    detail: [
-      'Projects: boards, sprints, backlog, ideas with votes, dashboards, reports, time tracking and its own query language',
-      'Calendar and meetings: transcripts, live transcription, prep and follow-ups',
-      'Client workspaces where every requirement, decision and risk links back to the call or email it came from',
-      'AI agents pick up queued tasks inside one client’s data and stop for a person to approve',
-      '1,600+ commits, 160+ screens and 540 test files in two months',
-    ],
+    demo: 'platform',
+    name: 'Delivery platform',
+    kicker: 'GoKarya, since September 2026',
+    steps: steps(
+      'The one place GoKarya’s consultants run client work: projects, calendar, meetings and tasks, plus every requirement, decision and risk.',
+      'AI drafts the paperwork from calls and emails, but nothing counts until a person approves it, and every fact links back to where it came from.',
+      'Built from the first commit: 1,600+ commits, 160+ screens and 540 test files in two months.',
+    ),
+    hint: 'Approve a draft, or hover one to see its source',
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Claude Agent SDK', 'Vercel'],
     links: [],
     note: 'Internal product, so there is no public link.',
   },
   {
     id: 'gokarya-site',
-    short: "GoKarya’s marketing site, rebuilt around a WebGL particle hero that changes shape as you hover each industry.",
-    plate: 'gokarya',
+    demo: 'gokarya',
     name: 'gokarya.com',
-    role: 'Owner of the site redesign',
-    summary:
-      "GoKarya's marketing site. I rebuilt it around a WebGL particle hero whose formation changes as you hover each industry in the headline, and gave it a written design system so every page stays consistent.",
-    detail: [
-      'three.js particle field that pauses off screen and respects reduced motion',
-      'Fonts, colour and spacing recorded in a design file with a log of every decision',
-      'Build step that writes per-page SEO metadata',
-    ],
+    kicker: 'GoKarya, site redesign',
+    steps: steps(
+      'GoKarya’s marketing site, rebuilt around a particle hero that takes the shape of each industry it serves.',
+      '36,000 WebGL particles that morph on hover, pause when off screen and stay still for anyone who prefers reduced motion.',
+      'Live, with a written design system and a log of every design decision so each page stays consistent.',
+    ),
+    hint: 'Pick an industry, then move your cursor through the field',
     stack: ['React', 'three.js', 'GSAP', 'Vite', 'Vercel'],
     links: [{ label: 'Visit gokarya.com', href: 'https://gokarya.com' }],
   },
@@ -45,49 +45,46 @@ export const work = [
 export const projects = [
   {
     id: 'blocksmash',
-    short: 'A block puzzle with an honest dealer: pieces are truly random and never rigged against you. It installs to your phone and plays offline.',
-    plate: 'blocksmash',
+    demo: 'blocksmash',
     name: 'Block Smash',
-    summary:
-      'A block puzzle with an honest dealer: pieces are drawn at random without ever looking at your score. It installs to your phone and works offline.',
-    detail: [
-      'Daily puzzle that everyone plays with the same pieces, with hints and a solver',
-      'Classic, Timed and Zen modes, seven themes, stats and music',
-      'One HTML page and a service worker, with no framework',
-    ],
+    kicker: 'Personal project',
+    steps: steps(
+      'A block puzzle you install on your phone and play offline.',
+      'Lots of block puzzles quietly rig which pieces you get. This dealer is truly random and never looks at your score; it only re-deals when a piece can’t fit anywhere.',
+      'A daily puzzle with hints and a solver, Timed and Zen modes and seven themes, all in one HTML page and a service worker.',
+    ),
+    hint: 'Pick a piece, then tap the board to place it',
     stack: ['JavaScript', 'HTML', 'CSS', 'PWA'],
     links: [
-      { label: 'Play it', href: 'https://lewis793.github.io/blocksmash/' },
+      { label: 'Play the full game', href: 'https://lewis793.github.io/blocksmash/' },
       { label: 'Code', href: 'https://github.com/lewis793/blocksmash' },
     ],
   },
   {
     id: 'whisper',
-    short: "Hold a shortcut, speak, let go, and tidy text appears wherever you’re typing. It runs entirely on your own PC.",
-    plate: 'whisper',
+    demo: 'whisper',
     name: 'Whisper',
-    summary:
-      'Push-to-talk dictation for Windows that runs entirely on your own PC. Hold a shortcut, speak, let go, and tidy text appears wherever your cursor is.',
-    detail: [
-      'Speech to text with whisper.cpp on the GPU through Vulkan',
-      'A local language model cleans up the text, with its own test set (61 of 63 cases pass)',
-      'Personal dictionary, snippets, per-app writing styles and searchable history',
-    ],
+    kicker: 'Personal project',
+    steps: steps(
+      'Hold a shortcut, speak, let go, and tidy text appears wherever you’re typing.',
+      'It all runs on your own PC: whisper.cpp turns speech into text on the GPU, then a local language model takes out the ums and fixes the punctuation.',
+      'The cleanup has its own test set, and 61 of 63 cases pass.',
+    ),
+    hint: 'Hold the button, or hold Space, to dictate',
     stack: ['Rust', 'Tauri', 'React', 'TypeScript', 'SQLite', 'llama.cpp'],
     links: [{ label: 'Code', href: 'https://github.com/lewis793/whisper' }],
   },
   {
     id: 'eidolon',
-    short: 'A private AI that runs on your own machine and is learning to write like you.',
-    plate: 'eidolon',
+    demo: 'eidolon',
     name: 'Eidolon',
-    summary:
-      'A private AI that runs on your own machine and, over time, learns to write like you. Today it chats with any local model and downloads new ones from Hugging Face.',
-    detail: [
-      'Starts and supervises a llama.cpp server, and stops it cleanly on quit',
-      'Resumable model downloads, checked against Hugging Face’s SHA-256',
-      'Next on the roadmap: a knowledge base over your notes, then memory',
-    ],
+    kicker: 'Personal project',
+    steps: steps(
+      'A private AI that runs on your own machine, with nothing sent anywhere.',
+      'It starts and looks after a local llama.cpp server, and downloads models from Hugging Face in a way that resumes and checks every file.',
+      'Chat and model downloads work today. Next comes a knowledge base over your notes, then memory, so it learns to write like you.',
+    ),
+    hint: 'Pick something to ask',
     stack: ['Electron', 'TypeScript', 'React', 'llama.cpp'],
     links: [{ label: 'Code', href: 'https://github.com/lewis793/project-eidolon' }],
   },
