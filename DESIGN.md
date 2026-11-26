@@ -60,3 +60,4 @@ Plain, first person, specific. Say what a thing does and what is true about it (
 | 2026-11-26 | Toolkit marquee replaced by a tools-by-project grid | Lewis: the giant scrolling outlined words looked like AI slop. The grid says something true: where each tool was actually used. |
 | 2026-11-26 | Tools grid redrawn as chips and project tokens joined by lines on hover | Lewis: the idea was right but the grid read like a spreadsheet. |
 | 2026-11-26 | Tools section centred | Lewis: didn't like it aligned to the left. Centred, the chips and lines read as a tree down to the projects. |
+| 2026-11-26 | Contact becomes a compact strip: heading and links on one line, form on one row, message box grows as you type | Lewis: the contact section was too big. |

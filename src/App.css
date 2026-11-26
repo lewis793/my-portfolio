@@ -197,20 +197,26 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
   .tk-xl { font-size: 19px; } .tk-l { font-size: 17px; } .tk-m { font-size: 16px; }
 }
 
-/* ---------- Contact ---------- */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
-.form { display: grid; gap: 16px; }
-.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.form label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+/* ---------- Contact: a compact strip ---------- */
+#contact { padding-block: clamp(40px, 6vh, 64px); }
+.contact { display: grid; gap: 20px; }
+.contact-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+.contact-head h2 { font: 650 clamp(26px, 2.8vw, 34px)/1.1 var(--display); letter-spacing: -0.025em; }
+.contact-head p { color: var(--muted); }
+.contact-links { display: inline-flex; gap: 14px; margin-left: auto; font-weight: 600; font-size: 15px; }
+.form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 2.4fr) auto; gap: 12px; align-items: end; }
+.form label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+.form label > span { display: flex; justify-content: space-between; gap: 8px; }
 .form input, .form textarea {
-  font: inherit; font-weight: 400; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; width: 100%;
+  font: inherit; font-weight: 400; font-size: 15px; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; line-height: 1.4;
 }
-.form textarea { resize: vertical; min-height: 140px; }
+.form textarea { resize: none; height: 44px; max-height: 150px; overflow-y: auto; }
 .form input:focus-visible, .form textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 0; border-color: transparent; }
-.form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.form-status { min-height: 1.6em; font-size: 15px; }
+.f-send { height: 44px; }
+.count { font-size: 12px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.form .form-status { grid-column: 1 / -1; }
+.form-status { min-height: 1.4em; font-size: 14px; margin-top: -4px; }
 .form-status.is-sent { color: #1d7a4c; }
 .form-status.is-error { color: #b4372a; }
 @media (prefers-color-scheme: dark) {
@@ -378,13 +384,16 @@ h3 { font: 650 26px/1.15 var(--display); letter-spacing: -0.02em; }
   .uni-name { grid-column: 1; }
   .uni-short, .uni-stack { grid-column: 1; }
   .uni-arrow { grid-column: 2; grid-row: 1; }
-  .contact { grid-template-columns: minmax(0, 1fr); }
+  .form { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .f-msg { grid-column: 1 / -1; }
+  .f-send { grid-column: 1 / -1; justify-self: start; }
   .hero-main { grid-template-columns: minmax(0, 1fr); }
 
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .form-row { grid-template-columns: minmax(0, 1fr); }
+  .form { grid-template-columns: minmax(0, 1fr); }
+  .contact-links { margin-left: 0; }
   .topbar nav a { padding: 6px 7px; font-size: 14px; }
   .topbar nav a[href="#university"] { display: none; }
   .nx-app { grid-template-columns: minmax(0, 1fr); }

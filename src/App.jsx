@@ -185,13 +185,14 @@ export default function App() {
 
         <section className="section wrap" id="contact" aria-labelledby="contact-h">
           <div className="contact">
-            <header className="section-head">
+            <div className="contact-head">
               <h2 id="contact-h">Get in touch</h2>
-              <p>
-                Send a message and I&apos;ll reply by email. I&apos;m also on <ExternalLink href={links.linkedin}>LinkedIn</ExternalLink> and{' '}
-                <ExternalLink href={links.github}>GitHub</ExternalLink>.
-              </p>
-            </header>
+              <p>Send a message and I&apos;ll reply by email.</p>
+              <span className="contact-links">
+                <ExternalLink href={links.linkedin}>LinkedIn</ExternalLink>
+                <ExternalLink href={links.github}>GitHub</ExternalLink>
+              </span>
+            </div>
             <Contact />
           </div>
         </section>

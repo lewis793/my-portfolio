@@ -37,6 +37,13 @@ export default function Contact() {
   const button = useMagnetic(0.25);
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+  // The message box starts one line tall and grows with what's typed, up to about five lines.
+  const grow = (e) => {
+    const el = e.target;
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, 150)}px`;
+    set('message')(e);
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -65,26 +72,24 @@ export default function Contact() {
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <div className="form-row">
-        <label>
-          Name
-          <input required maxLength={60} autoComplete="name" value={form.name} onChange={set('name')} />
-        </label>
-        <label>
-          Email
-          <input required type="email" maxLength={256} autoComplete="email" value={form.email} onChange={set('email')} />
-        </label>
-      </div>
-      <label>
-        Message
-        <textarea required maxLength={LIMIT} rows={6} value={form.message} onChange={set('message')} aria-describedby="count" />
+      <label className="f-name">
+        Name
+        <input required maxLength={60} autoComplete="name" value={form.name} onChange={set('name')} />
       </label>
-      <div className="form-foot">
-        <button ref={button} type="submit" className="button button-solid" disabled={status.state === 'sending'}>
-          {status.state === 'sending' ? 'Sending…' : 'Send message'}
-        </button>
-        <span id="count" className="count">{form.message.length}/{LIMIT}</span>
-      </div>
+      <label className="f-email">
+        Email
+        <input required type="email" maxLength={256} autoComplete="email" value={form.email} onChange={set('email')} />
+      </label>
+      <label className="f-msg">
+        <span>
+          Message
+          {form.message.length > 0 && <span id="count" className="count">{form.message.length}/{LIMIT}</span>}
+        </span>
+        <textarea required maxLength={LIMIT} rows={1} value={form.message} onChange={grow} aria-describedby="count" />
+      </label>
+      <button ref={button} type="submit" className="button button-solid f-send" disabled={status.state === 'sending'}>
+        {status.state === 'sending' ? 'Sending…' : 'Send'}
+      </button>
       <p className={`form-status is-${status.state}`} role="status" aria-live="polite">{status.text}</p>
     </form>
   );
