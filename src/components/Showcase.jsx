@@ -86,6 +86,7 @@ export default function Showcase({ groups }) {
                 onClick={() => select(p.id)}
               >
                 {p.name}
+                {p.inProgress && <i className="sc-wip-dot" aria-label="in progress" />}
               </button>
             ))}
             </div>
@@ -96,7 +97,10 @@ export default function Showcase({ groups }) {
       <div className="sc-body">
         <div className="sc-text" role="tabpanel" id={`panel-${item.id}`} aria-labelledby={item.id} key={item.id}>
           <p className="sc-kicker">{item.kicker}</p>
-          <h3 className="sc-name">{item.name}</h3>
+          <h3 className="sc-name">
+            {item.name}
+            {item.inProgress && <span className="sc-wip">In progress</span>}
+          </h3>
           <p className="sc-lead">{item.steps[0].text}</p>
           <dl className="sc-facts">
             {item.steps.slice(1).map((s) => (

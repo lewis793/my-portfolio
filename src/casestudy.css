@@ -20,6 +20,14 @@
 .sc-text { animation: sc-in .55s cubic-bezier(.16, 1, .3, 1); }
 @keyframes sc-in { from { opacity: 0; transform: translateY(12px); } }
 .sc-kicker { color: var(--muted); font-size: 15px; }
+.sc-wip {
+  display: inline-flex; align-items: center; gap: 6px; margin-left: 14px; vertical-align: middle; padding: 5px 10px 5px 9px;
+  border: 1px solid color-mix(in srgb, #c98a12 45%, var(--line)); border-radius: 999px; background: color-mix(in srgb, #e8a340 14%, var(--ground));
+  font: 600 13px/1 var(--body); letter-spacing: 0; color: var(--ink);
+}
+.sc-wip::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #e8a340; animation: wip 2s ease-in-out infinite; }
+@keyframes wip { 50% { opacity: .35; } }
+.sc-wip-dot { display: inline-block; width: 6px; height: 6px; margin-left: 7px; border-radius: 50%; background: #e8a340; vertical-align: 2px; }
 .sc-name { font: 650 clamp(34px, 3.8vw, 54px)/1 var(--display); letter-spacing: -0.035em; margin-top: 6px; }
 .sc-lead { margin-top: 16px; font-size: 19px; line-height: 1.45; max-width: 34ch; }
 .sc-facts { margin: 22px 0 0; max-width: 46ch; }

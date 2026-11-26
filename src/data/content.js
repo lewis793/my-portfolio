@@ -66,6 +66,7 @@ export const projects = [
     id: 'whisper',
     demo: 'whisper',
     name: 'Whisper',
+    inProgress: true,
     kicker: 'Personal project',
     steps: steps(
       'Hold a key, speak, let go, and tidy text appears wherever you’re typing.',
@@ -80,6 +81,7 @@ export const projects = [
     id: 'eidolon',
     demo: 'eidolon',
     name: 'Eidolon',
+    inProgress: true,
     kicker: 'Personal project',
     steps: steps(
       'A private AI that runs on your own machine.',
