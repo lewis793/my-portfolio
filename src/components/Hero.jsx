@@ -51,9 +51,10 @@ export default function Hero() {
     // Counters run once the strip scrolls into view.
     gsap.utils.toArray('.stat-num').forEach((el) => {
       const to = Number(el.dataset.to), dec = Number(el.dataset.dec || 0), suffix = el.dataset.suffix || '';
+      // The real value is in the page until the count starts, so it never sits at 0.
       const obj = { v: 0 };
       gsap.to(obj, {
-        v: to, duration: 2, ease: 'power3.out',
+        v: to, duration: 2, ease: 'power3.out', immediateRender: false,
         scrollTrigger: { trigger: el, start: 'top bottom', once: true },
         onUpdate: () => { el.textContent = obj.v.toFixed(dec) + suffix; },
       });
@@ -148,22 +149,19 @@ export default function Hero() {
   return (
     <section className="hero" id="top" ref={root}>
       <div className="hero-inner wrap">
-        <div className="hero-main">
-          <h1 ref={title}>
-            I&apos;m Lewis. I build GoKarya&apos;s <Form k="platform" href="#platform">delivery platform</Form>,
-            a <Form k="blocksmash" href="#blocksmash">puzzle game</Form>, a <Form k="whisper" href="#whisper">dictation app</Form>{' '}
-            and a <span className="nobr"><Form k="eidolon" href="#eidolon">private AI</Form>.</span>
-          </h1>
-          <Desktop />
-        </div>
+        <h1 ref={title}>
+          I&apos;m Lewis. I build <span className="nobr"><Form k="platform" href="#platform">AI products</Form>,</span>{' '}
+          <Form k="whisper" href="#whisper">apps</Form> and <span className="nobr"><Form k="blocksmash" href="#blocksmash">games</Form>.</span>
+        </h1>
         <div className="hero-copy">
+          <p className="hero-note">AI Engineer intern at GoKarya in New York, then back to Bath for the final year of my master&apos;s.</p>
           <div className="hero-actions">
             <Magnetic href="#contact" className="button button-solid">Get in touch</Magnetic>
             <Magnetic href={links.github} target="_blank" rel="noopener noreferrer" className="button">GitHub</Magnetic>
             <Magnetic href={links.linkedin} target="_blank" rel="noopener noreferrer" className="button">LinkedIn</Magnetic>
           </div>
-          <p className="hero-note">AI Engineer intern at GoKarya in New York, then back to Bath for the final year of my master&apos;s.</p>
         </div>
+        <Desktop />
         <dl className="stats">
           {STATS.map((s) => (
             <div className="stat" key={s.label}>
@@ -171,7 +169,7 @@ export default function Hero() {
               <dd>
                 {s.count && !reducedMotion() ? (
                   <span className="stat-num" data-to={s.count.to} data-dec={s.count.decimals} data-suffix={s.count.suffix} aria-label={s.value}>
-                    {(0).toFixed(s.count.decimals) + s.count.suffix}
+                    {s.value}
                   </span>
                 ) : s.value}
               </dd>

@@ -6,10 +6,10 @@ import { gsap, reducedMotion, scrollToTarget } from '../lib/motion.js';
 // window you can drag, raise and close. Hovering a project's words in the headline opens or raises
 // its window (the headline sends a `heroproject` event).
 const APPS = [
-  { key: 'platform', title: 'Delivery platform', at: [0.03, 0.09] },
-  { key: 'whisper', title: 'Whisper', at: [0.2, 0.19] },
-  { key: 'blocksmash', title: 'Block Smash', at: [0.09, 0.31] },
-  { key: 'eidolon', title: 'Eidolon', at: [0.2, 0.33] },
+  { key: 'platform', title: 'Delivery platform', at: [0.04, 0.1] },
+  { key: 'whisper', title: 'Whisper', at: [0.3, 0.15] },
+  { key: 'blocksmash', title: 'Block Smash', at: [0.16, 0.26] },
+  { key: 'eidolon', title: 'Eidolon', at: [0.38, 0.29] },
 ];
 const FIRST_OPEN = ['platform', 'whisper', 'blocksmash'];
 
@@ -201,7 +201,7 @@ export default function Desktop() {
             key={a.key}
             ref={(el) => { winRefs.current[a.key] = el; }}
             className={`dt-win${topKey === a.key ? ' is-top' : ''}`}
-            style={{ left: `${w.x * 100}%`, top: `${w.y * 100}%`, zIndex: w.z }}
+            style={{ left: `min(${w.x * 100}%, 100% - var(--win-w) * 100%)`, top: `${w.y * 100}%`, zIndex: w.z }}
             aria-label={a.title}
             onPointerDown={() => topKey !== a.key && raise(a.key)}
           >
